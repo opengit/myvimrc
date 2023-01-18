@@ -1,0 +1,189 @@
+{
+  // normal
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.messageLevel": "error",
+  "coc.preferences.enableMarkdown": false,
+  "signature.target": "float",
+  "suggest.timeout": 15000,
+  "suggest.triggerCompletionWait": 10,
+  "suggest.floatEnable": true,
+  "suggest.enablePreview": true,
+  "suggest.maxCompleteItemCount": 30,
+  "suggest.autoTrigger": "always",
+  "suggest.minTriggerInputLength": 2,
+  "suggest.fixInsertedWord": true,
+  "suggest.localityBonus": true,
+  "suggest.formatItems": ["abbr", "menu", "kind"],
+  "suggest.completionItemKindLabels": {
+    "constructor": "\ufb25",
+    "keyword": "\uf1de",
+    "variable": "\ue79b",
+    "value": "\uf89f",
+    "operator": "\u03a8",
+    "function": "\u0192",
+    "reference": "\ufa46",
+    "constant": "\uf8fe",
+    "method": "\uf09a",
+    "struct": "\ufb44",
+    "class": "\uf0e8",
+    "interface": "\uf417",
+    "text": "\ue612",
+    "enum": "\uf435",
+    "enumMember": "\uf02b",
+    "module": "\uf40d",
+    "color": "\ue22b",
+    "property": "\ue624",
+    "field": "\uf9be",
+    "unit": "\uf475",
+    "event": "\ufacd",
+    "file": "\uf723",
+    "folder": "\uf114",
+    "snippet": "\ue60b",
+    "typeParameter": "\uf728",
+    "default": " "
+  },
+
+  //jedi
+  "jedi.enable": true,
+  "jedi.startupMessage": false,
+  "jedi.markupKindPreferred": "plaintext",
+  "jedi.trace.server": "off",
+  "jedi.jediSettings.autoImportModules": [],
+  "jedi.jediSettings.caseInsensitiveCompletion": false,
+  "jedi.jediSettings.debug": false,
+  "jedi.executable.command": "jedi-language-server",
+  "jedi.executable.args": [],
+  "jedi.codeAction.nameExtractFunction": "jls_extract_def",
+  "jedi.codeAction.nameExtractVariable": "jls_extract_var",
+  "jedi.completion.disableSnippets": false,
+  "jedi.completion.resolveEagerly": false,
+  "jedi.completion.ignorePatterns": [],
+  "jedi.diagnostics.enable": false,
+  "jedi.diagnostics.didOpen": true,
+  "jedi.diagnostics.didChange": true,
+  "jedi.diagnostics.didSave": true,
+  "jedi.hover.enable": true,
+  "jedi.hover.disable.keyword.all": false,
+  "jedi.hover.disable.keyword.names": [],
+  "jedi.hover.disable.keyword.fullNames": [],
+  "jedi.workspace.extraPaths": [],
+  // "jedi.workspace.environmentPath": "/path/to/venv/bin/python",
+  "jedi.workspace.symbols.maxSymbols": 20,
+  "jedi.workspace.symbols.ignoreFolders": [
+    ".nox",
+    ".tox",
+    ".venv",
+    "__pycache__",
+    "venv"
+  ],
+
+  // diagnostic
+  "diagnostic.warningSign": "W",
+  "diagnostic.errorSign": "E",
+  "diagnostic.infoSign": "I",
+  "diagnostic.hintSign": "H",
+  "diagnostic-languageserver.filetypes": {
+    "python": "flake8"
+  },
+  "diagnostic-languageserver.linters": {
+    "flake8": {
+      "sourceName": "flake8",
+      "command": "flake8",
+      "debounce": 200,
+      "rootPatterns": [".git", "pyproject.toml", "setup.py"],
+      "args": [
+        "--ignore=F401,F403,F405,E402,C901,W503,W504,E116,E702,C0103,C0114,C0115,C0116,C0103,C0301,W0613,W0102,R0903,R0902,R0914,R0915,R0205,W0703,W0702,W0603",
+        "--max-line-length=88",
+        "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s",
+        "-"
+      ],
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "formatLines": 1,
+      "formatPattern": [
+        "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
+        {
+          "line": 1,
+          "column": 2,
+          "security": 3,
+          "message": 4
+        }
+      ],
+      "securities": {
+        "W": "info",
+        "E": "warning",
+        "F": "info",
+        "C": "info",
+        "N": "hint"
+      }
+    }
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    // "python": ["black", "isort", "docformatter"]
+    "python": ["black", "docformatter"]
+  },
+  "diagnostic-languageserver.formatters": {
+    "black": {
+      "command": "black",
+      "args": ["-q", "-"]
+    },
+    // "isort": {
+    //   "command": "isort",
+    //   "args": ["-q", "-"]
+    // },
+    "docformatter": {
+      "command": "docformatter",
+      "args": ["-"]
+    }
+  },
+
+  // coc-emmet
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact",
+    "typescript.jsx": "typescriptreact",
+    "javascript.jsx": "javascriptreact",
+    "tsx": "typescript.tsx",
+    "jsx": "javascript.tsx",
+    "js": "typescriptreact"
+  },
+
+  // coc-ultisnips
+  "snippets.ultisnips.pythonPrompt": false,
+
+  // CocOutline
+  "outline.sortBy": "position",
+  "outline.followCursor": true,
+  "outline.autoWidth": false,
+  "outline.autoPreview": true,
+
+  // coc-explorer
+  "explorer.width": 30,
+  "explorer.buffer.root.template": "[icon & 1] OPEN EDITORS",
+  "explorer.file.root.template": "[icon & 1] PROJECT ([root])",
+  "explorer.file.child.template": "[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5]",
+  "explorer.file.showHiddenFiles": true,
+  "explorer.file.reveal.auto": true,
+  "explorer.icon.source": "vim-devicons",
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": true,
+  "explorer.enableFloatinput": true,
+  "explorer.git.enable": true,
+  "explorer.keyMappings": {
+    // "s": "open:vsplit",
+    // "mm": "rename",
+    // "mc": "copyFile",
+    // "C": "copyFile",
+    // "md": "delete",
+    // "D": "delete",
+    // "ma": "addFile",
+    // "mA": "addDirectory"
+    "mm": "",
+    "mc": "",
+    "C": "",
+    "md": "",
+    "D": "",
+    "ma": "",
+    "mA": ""
+  }
+}
