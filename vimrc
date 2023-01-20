@@ -65,6 +65,7 @@
 
 " <leader><F3>   ->    Nerdtree
 " <leader><F4>   ->    Vista!!
+" <leader><F4>   ->    CocOutline
 " <leader><F8>   ->    add header to py
 
 
@@ -199,8 +200,8 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " 格式化选中的代码
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -291,8 +292,37 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " coc-explorer
-nmap <leader><F3> <Cmd>CocCommand explorer<CR>
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\     'root-uri': '~/.vim',
+\   },
+\   'cocConfig': {
+\      'root-uri': '~/.config/coc',
+\   },
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\ }
 
+if has('nvim')
+    nmap <leader><F3> <Cmd>CocCommand explorer --preset floating<CR>
+else
+    nmap <leader><F3> <Cmd>CocCommand explorer<CR>
+endif
+
+" Use preset argument to open it
+nmap <space>ed <Cmd>CocCommand explorer --preset .vim<CR>
+nmap <space>ef <Cmd>CocCommand explorer --preset floating<CR>
+nmap <space>ec <Cmd>CocCommand explorer --preset cocConfig<CR>
+" List all presets
+nmap <space>el <Cmd>CocList explPresets<CR>
+
+" CocOutline
+nmap <leader><F4> <Cmd>CocCommand fzf-preview.CocOutline<CR>
+
+" coc diagnostics
+nmap <leader><F5> <Cmd>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
 
 " 弹出选择python虚拟环境的选择框
 " nmap <leader><F7> :CocCommand python.setInterpreter<CR>
@@ -304,19 +334,19 @@ let g:airline#extensions#coc#enabled = 1
 " let airline#extensions#coc#warning_symbol = 'W: '
 " let airline#extensions#coc#error_symbol = '💥'
 " let airline#extensions#coc#warning_symbol = '⚡️'
-" let airline#extensions#coc#error_symbol = "🔥"
-" let airline#extensions#coc#warning_symbol = "🚨"
-" let airline#extensions#coc#error_symbol = '🞫'
-" let airline#extensions#coc#warning_symbol = '⯁'
-let airline#extensions#coc#error_symbol = ''
-let airline#extensions#coc#warning_symbol = ''
+let airline#extensions#coc#error_symbol = "🔥"
+let airline#extensions#coc#warning_symbol = "🚨"
+let airline#extensions#coc#error_symbol = '🞫'
+let airline#extensions#coc#warning_symbol = '⯁'
+" let airline#extensions#coc#error_symbol = ''
+" let airline#extensions#coc#warning_symbol = ''
 " let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 " let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 " 自动安装这些插件
 let g:coc_global_extensions = ['coc-html','coc-css', 'coc-json',
             \ 'coc-lists','coc-markdownlint', 'coc-snippets', 'coc-explorer',
-            \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git', 'coc-ultisnips', 
+            \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git', 'coc-ultisnips', 'coc-fzf-preview',
             \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji','coc-omni', 'coc-jedi', 'coc-diagnostic', 'coc-tsserver', 'coc-prettier']
 
 " if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -359,8 +389,6 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 xmap <leader>x  <Plug>(coc-convert-snippet)
 """
 
-
-
 """
 " Plug 'majutsushi/tagbar'
 " nmap <F4> :TagbarToggle<CR>
@@ -370,109 +398,140 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 """
 
 """
-Plug 'liuchengxu/vista.vim'
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-set statusline+=%{NearestMethodOrFunction()}
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-nmap <F4> :Vista!!<CR>
-" let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_icon_indent = ["▸ ", ""]
-" let g:vista_icon_indent = ["", ""]
-let g:vista_default_executive = 'ctags'
-" let g:vista_ctags_cmd = {
-"       \ 'haskell': 'hasktags -x -o - -c',
-"       \ }
-let g:vista_fzf_preview = ['right:50%']
-let g:vista#renderer#enable_icon = 1
-let g:vista#renderer#icons = {
-\   "function": "\u0192",
-\    "variable": "\ue79b",
-\  }
+" Plug 'liuchengxu/vista.vim'
+" function! NearestMethodOrFunction() abort
+"   return get(b:, 'vista_nearest_method_or_function', '')
+" endfunction
+" set statusline+=%{NearestMethodOrFunction()}
+" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+" nmap <leader><F4> :Vista!!<CR>
+" " let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+" " let g:vista_icon_indent = ["▸ ", ""]
+" let g:vista_icon_indent = ["+", "-"]
+" let g:vista_default_executive = 'ctags'
+" " let g:vista_ctags_cmd = {
+" "       \ 'haskell': 'hasktags -x -o - -c',
+" "       \ }
+" let g:vista_fzf_preview = ['right:50%']
+" let g:vista#renderer#enable_icon = 1
+" let g:vista#renderer#icons = {
+" \   "function": "\u0192",
+" \    "variable": "\ue79b",
+" \  }
 """
 
 """
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-" 开启/关闭nerdtree快捷键
-" nnoremap <leader><F3> :NERDTreeToggle<CR>
-
-" 自动开启Nerdtree
-" autocmd vimenter * NERDTreeToggle
-
-"设定 NERDTree 视窗大小
-let g:NERDTreeWinSize = 50
-
-" 开启Nerdtree时自动显示Bookmarks
-" let NERDTreeShowBookmarks=1
-
-" 是否使用:edit命令时打开第二NerdTree
-let g:NERDTreeHijackNetrw=0
-
-" 当NERDTree为剩下的唯一窗口时自动关闭
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-"设置树的显示图标
-" let g:NERDTreeDirArrowExpandable = '▸'
-" let g:NERDTreeDirArrowCollapsible = '▾'
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
-" let g:NERDTreeDirArrowExpandable = '|'
-" let g:NERDTreeDirArrowCollapsible = '/'
-
-
-" 自动刷新
-autocmd BufEnter NERD_tree_* | execute 'normal R'
-
-
-" 过滤所有.pyc文件不显示
-let NERDTreeIgnore = ['\.pyc$']
-
-" 是否显示行号
-let g:NERDTreeShowLineNumbers=1
-
-" 隐藏文件
-let g:NERDTreeHidden=0
-
-" Making it prettier
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+" Plug 'preservim/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+"
+" " 开启/关闭nerdtree快捷键
+" " nnoremap <leader><F3> :NERDTreeToggle<CR>
+"
+" " 自动开启Nerdtree
+" " autocmd vimenter * NERDTreeToggle
+"
+" "设定 NERDTree 视窗大小
+" let g:NERDTreeWinSize = 50
+"
+" " 开启Nerdtree时自动显示Bookmarks
+" " let NERDTreeShowBookmarks=1
+"
+" " 是否使用:edit命令时打开第二NerdTree
+" let g:NERDTreeHijackNetrw=0
+"
+" " 当NERDTree为剩下的唯一窗口时自动关闭
+" " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"
+" "设置树的显示图标
+" " let g:NERDTreeDirArrowExpandable = '▸'
+" " let g:NERDTreeDirArrowCollapsible = '▾'
+" let g:NERDTreeDirArrowExpandable = '+'
+" let g:NERDTreeDirArrowCollapsible = '-'
+" " let g:NERDTreeDirArrowExpandable = '|'
+" " let g:NERDTreeDirArrowCollapsible = '/'
+"
+"
+" " 自动刷新
+" autocmd BufEnter NERD_tree_* | execute 'normal R'
+"
+"
+" " 过滤所有.pyc文件不显示
+" let NERDTreeIgnore = ['\.pyc$']
+"
+" " 是否显示行号
+" let g:NERDTreeShowLineNumbers=1
+"
+" " 隐藏文件
+" let g:NERDTreeHidden=0
+"
+" " Making it prettier
+" let NERDTreeMinimalUI = 1
+" let NERDTreeDirArrows = 1
 """
 
 
 """
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
-Plug 'junegunn/fzf.vim' " needed for previews
-Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+" Plug 'junegunn/fzf.vim' " needed for previews
+" Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+"
+" " makes fzf work related to git root of buffer which is nice
+" Plug 'airblade/vim-rooter'
+"
+" " Allow fzf search as \t
+" nmap <leader>t :FZF<cr>
+"
+" " Update fzf.vim actions for bindings like command-t
+" let g:fzf_action = {
+"       \ 'ctrl-s': 'split',
+"       \ 'ctrl-t': 'tabedit',
+"       \ 'ctrl-v': 'vsplit',
+"       \ }
+" let g:fzf_layout = { 'down': '~40%' }
+"
+" " this allows the escape key to close the fzf window matching coc.nvim
+" " if has("nvim")
+" "   au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+" "   au FileType fzf tunmap <buffer> <Esc>
+" " endif
+"
+" " FZF floating window
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+" nmap <leader><F5> :CocFzfList diagnostics<cr>
 
-" makes fzf work related to git root of buffer which is nice
-Plug 'airblade/vim-rooter'
 
-" Allow fzf search as \t
-nmap <leader>t :FZF<cr>
+nmap <Leader>f [fzf-p]
+xmap <Leader>f [fzf-p]
 
-" Update fzf.vim actions for bindings like command-t
-let g:fzf_action = {
-      \ 'ctrl-s': 'split',
-      \ 'ctrl-t': 'tabedit',
-      \ 'ctrl-v': 'vsplit',
-      \ }
-let g:fzf_layout = { 'down': '~40%' }
+nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
+nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
+nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
+nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
+nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
+nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
+nnoremap <silent> [fzf-p]<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
+nnoremap <silent> [fzf-p]g;    :<C-u>CocCommand fzf-preview.Changes<CR>
+nnoremap <silent> [fzf-p]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
+nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
+nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
+" nnoremap <silent> [fzf-p]t     :<C-u>CocCommand fzf-preview.BufferTags<CR>
+" nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
+" nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
 
-" this allows the escape key to close the fzf window matching coc.nvim
-" if has("nvim")
-"   au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
-"   au FileType fzf tunmap <buffer> <Esc>
-" endif
+nnoremap <silent> [fzf-p]co     :<C-u>CocCommand fzf-preview.CocOutline<CR>
+nnoremap <silent> [fzf-p]tc     :<C-u>CocCommand fzf-preview.TodoComments<CR>
 
-" FZF floating window
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-nmap <leader><F5> :CocFzfList diagnostics<cr>
+nnoremap <silent> [fzf-p]cd     :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
+
 
 """
 
+"""
+" Vim Script
+Plug 'nvim-lua/plenary.nvim'
+Plug 'folke/todo-comments.nvim'
+"""
 
 """ 支持git
 Plug 'tpope/vim-fugitive'
@@ -717,20 +776,20 @@ Plug 'sheerun/vim-polyglot'
 
 """ ctrlp
 " Plug 'kien/ctrlp.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlP'
-map <leader>f :CtrlPMRU<CR>
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-    \ }
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
-let g:ctrlp_max_height=15
-let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
-let g:ctrlp_follow_symlinks=1
+" Plug 'ctrlpvim/ctrlp.vim'
+" let g:ctrlp_map = '<leader>p'
+" let g:ctrlp_cmd = 'CtrlP'
+" map <leader>f :CtrlPMRU<CR>
+" let g:ctrlp_custom_ignore = {
+"     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+"     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+"     \ }
+" let g:ctrlp_working_path_mode=0
+" let g:ctrlp_match_window_bottom=1
+" let g:ctrlp_max_height=15
+" let g:ctrlp_match_window_reversed=0
+" let g:ctrlp_mruf_max=500
+" let g:ctrlp_follow_symlinks=1
 """
 
 """ ctrlp-funky 用于 ctrlp.vim 的超级简单函数导航器。
@@ -1039,7 +1098,8 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 set splitbelow
 
 " 设置tags目录
-set tags+=~/.cache/tags
+" set tags+=~/.cache/tags
+set tags=./.tags;,.tags
 
 set nu
 set relativenumber
@@ -1123,14 +1183,19 @@ let g:loaded_netrwPlugin=1
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
-
-"Cursor settings:
 "  1 -> blinking block
 "  2 -> solid block 
 "  3 -> blinking underscore
 "  4 -> solid underscore
 "  5 -> blinking vertical bar
 "  6 -> solid vertical bar
+"
+
+" 光标的形状
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+        \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+        \,sm:block-blinkwait175-blinkoff150-blinkon175
+
 
 
 
