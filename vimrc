@@ -306,7 +306,7 @@ let g:coc_explorer_global_presets = {
 \ }
 
 if has('nvim')
-    nmap <leader><F3> <Cmd>CocCommand explorer --preset floating<CR>
+    nmap <leader><F3> <Cmd>CocCommand explorer --toggle --preset floating<CR>
 else
     nmap <leader><F3> <Cmd>CocCommand explorer<CR>
 endif
@@ -336,8 +336,8 @@ let g:airline#extensions#coc#enabled = 1
 " let airline#extensions#coc#warning_symbol = '⚡️'
 let airline#extensions#coc#error_symbol = "🔥"
 let airline#extensions#coc#warning_symbol = "🚨"
-let airline#extensions#coc#error_symbol = '🞫'
-let airline#extensions#coc#warning_symbol = '⯁'
+" let airline#extensions#coc#error_symbol = '🞫'
+" let airline#extensions#coc#warning_symbol = '⯁'
 " let airline#extensions#coc#error_symbol = ''
 " let airline#extensions#coc#warning_symbol = ''
 " let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
@@ -472,14 +472,14 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 
 """
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
-" Plug 'junegunn/fzf.vim' " needed for previews
-" Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+Plug 'junegunn/fzf.vim' " needed for previews
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 "
 " " makes fzf work related to git root of buffer which is nice
-" Plug 'airblade/vim-rooter'
+Plug 'airblade/vim-rooter'
 "
 " " Allow fzf search as \t
-" nmap <leader>t :FZF<cr>
+nmap <leader>t :FZF<cr>
 "
 " " Update fzf.vim actions for bindings like command-t
 " let g:fzf_action = {
@@ -1195,8 +1195,6 @@ let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
         \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
         \,sm:block-blinkwait175-blinkoff150-blinkon175
-
-
 
 
 " 主题颜色及字体
