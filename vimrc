@@ -887,11 +887,12 @@ nnoremap <Leader><F6> :CocCommand pyright.organizeimports<CR>:w<CR>
 
 " 保存快捷键
 func! SetSaveKey()
-    if &filetype == 'python' || &filetype == 'python3'
-      nmap <leader>w :call CocAction("format")<CR>:w!<CR>
-    else
-      nmap <leader>w :w!<CR>
-    endif
+    " if &filetype == 'python' || &filetype == 'python3'
+    "   nmap <leader>w :call CocAction("format")<CR>:w!<CR>
+    " else
+    "   nmap <leader>w :w!<CR>
+    " endif
+    nmap <leader>w :call CocAction("format")<CR>:w!<CR>
 endfunc
 autocmd BufRead * call SetSaveKey()
 
