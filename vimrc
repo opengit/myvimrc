@@ -887,17 +887,13 @@ nnoremap <Leader><F6> :CocCommand pyright.organizeimports<CR>:w<CR>
 
 " 保存快捷键
 func! SetSaveKey()
-    " if &filetype == 'python' || &filetype == 'python3'
-    "   nmap <leader>w :call CocAction("format")<CR>:w<CR>
-    " else
-    "   nmap <leader>w :w<CR>
-    " endif
-    nmap <leader>w :call CocAction("format")<CR>:w<CR>
+    if &filetype == 'python' || &filetype == 'python3'
+      nmap <leader>w :call CocAction("format")<CR>:w!<CR>
+    else
+      nmap <leader>w :w!<CR>
+    endif
 endfunc
 autocmd BufRead * call SetSaveKey()
-" :W sudo saves the file
-" (useful for handling the permission-denied error)
-command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 " 设置切换Buffer快捷键
 nnoremap <C-n> :bn<CR>
