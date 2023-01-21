@@ -1178,25 +1178,6 @@ set omnifunc=syntaxcomplete#Complete
 let g:loaded_netrw=1
 let g:loaded_netrwPlugin=1
 
-
-" 光标的设置 Mode Settings
-let &t_SI.="\e[5 q" "SI = INSERT mode
-let &t_SR.="\e[4 q" "SR = REPLACE mode
-let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
-"  1 -> blinking block
-"  2 -> solid block 
-"  3 -> blinking underscore
-"  4 -> solid underscore
-"  5 -> blinking vertical bar
-"  6 -> solid vertical bar
-"
-
-" 光标的形状
-set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-        \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-        \,sm:block-blinkwait175-blinkoff150-blinkon175
-
-
 " 主题颜色及字体
 "if has('termguicolors')
 "    set termguicolors
@@ -1241,6 +1222,12 @@ set guifont=Sarasa\ Mono\ SC\ Nerd:h12
 
 
 """ 备份文件夹位置
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swp//
-set undodir=~/.vim/.undo//
+if !has('nvim')
+    set backupdir=~/.vim/.backup//
+    set directory=~/.vim/.swp//
+    set undodir=~/.vim/.undo//
+else
+    set backupdir=~/.config/nvim/.backup//
+    set directory=~/.config/nvim/.swp//
+    set undodir=~/.config/nvim/.undo//
+endif
