@@ -1,4 +1,3 @@
-
 """快捷键笔记
 
 
@@ -15,58 +14,13 @@
 " y0    ->  从当前位置复制到行首
 " y^    ->  从当前位置复制到第一个非空白字符
 "
-""""""""""""" coc 快捷键 """""""""""""""""
-" <space>e       打开 文件浏览器
-" h         如果文件夹打开，则关闭
-" l         文件夹，列出文件列表；文件，则打开文件
-" backspace     回退到上一层文件夹
-" enter         文件夹，进入文件夹；文件，打开文件
-
-""""""""""""" Nerdtree 快捷键 """""""""""""
-" o       在已有窗口中打开文件、目录或书签，并跳到该窗口
-" go      在已有窗口 中打开文件、目录或书签，但不跳到该窗口
-" t       在新 Tab 中打开选中文件/书签，并跳到新 Tab
-" T       在新 Tab 中打开选中文件/书签，但不跳到新 Tab
-" i       split 一个新窗口打开选中文件，并跳到该窗口
-" gi      split 一个新窗口打开选中文件，但不跳到该窗口
-" s       vsplit 一个新窗口打开选中文件，并跳到该窗口
-" gs      vsplit 一个新 窗口打开选中文件，但不跳到该窗口
-" !       执行当前文件
-" O       递归打开选中 结点下的所有目录
-" x       合拢选中结点的父目录
-" X       递归 合拢选中结点下的所有目录
-" e       Edit the current dif
-" 
-" D       删除当前书签
-" 
-" P       跳到根结点
-" p       跳到父结点
-" K       跳到当前目录下同级的第一个结点
-" J       跳到当前目录下同级的最后一个结点
-" k       跳到当前目录下同级的前一个结点
-" j       跳到当前目录下同级的后一个结点
-" 
-" C       将选中目录或选中文件的父目录设为根结点
-" u       将当前根结点的父目录设为根目录，并变成合拢原根结点
-" U       将当前根结点的父目录设为根目录，但保持展开原根结点
-" r       递归刷新选中目录
-" R       递归刷新根结点
-" m       显示文件系统菜单
-" cd      将 CWD 设为选中目录
-" 
-" I       切换是否显示隐藏文件
-" f       切换是否使用文件过滤器
-" F       切换是否显示文件
-" B       切换是否显示书签
-" 
-" q       关闭 NerdTree 窗口
-" ?       切换是否显示 Quick Help                   
-
-
-" <leader><F3>   ->    Nerdtree
-" <leader><F4>   ->    Vista!!
-" <leader><F4>   ->    CocOutline
-" <leader><F8>   ->    add header to py
+""""""""""""" 快捷键 """""""""""""""""
+" <leader><F3>   ->    coc explorer
+" <leader><F4>   ->    coc outline
+" <leader><F5>   ->     diagnostics
+" <leader><F6>   ->    quickfix
+" <leader><F7>   ->    fzf ripgrep file content
+" <leader><F8>   ->    fzf file search
 
 
 
@@ -78,19 +32,6 @@
 " iC  Select inner class. Ex: viC, diC, yiC, ciC (normal, operator modes)
 " aM  Select a function or method. Ex: vaM, daM, yaM, caM (normal, operator modes)
 " iM  Select inner function or method. Ex: viM, diM, yiM, ciM (normal, operator modes)
-
-
-" <leader>fu      # 进入当前文件的函数列表搜索
-" <leader>fU      # 搜索当前光标下单词对应的函数
-" <leader>f   # 模糊搜索最近打开的文件(MRU)
-" <leader>p   # 模糊搜索当前目录及其子目录下的所有文件
-" ctrl + j/k  # 进行上下选择
-" ctrl + x    # 在当前窗口水平分屏打开文件
-" ctrl + v    # 同上, 垂直分屏
-" ctrl + t    # 在tab中打开
-" F5          # 刷新可搜索文件
-" <c-d>       # 只能搜索全路径文件
-" <c-r>       # 可以使用正则搜索文件
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -290,6 +231,8 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" QuickFix
+nnoremap <silent><nowait> <space>qf  :<C-u>CocList quickfix<cr>
 
 " coc-explorer
 let g:coc_explorer_global_presets = {
@@ -324,9 +267,15 @@ nmap <leader><F4> <Cmd>CocCommand fzf-preview.CocOutline<CR>
 " coc diagnostics
 nmap <leader><F5> <Cmd>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
 
-" 弹出选择python虚拟环境的选择框
-" nmap <leader><F7> :CocCommand python.setInterpreter<CR>
-" autocmd FileType python :CocCommand python.setInterpreter
+" coc quickfix
+nmap <leader><F6> <Cmd>CocCommand fzf-preview.QuickFix<CR>
+
+" coc ripgrep
+nmap <leader><F7> <Cmd>Rg<CR>
+
+
+nmap <leader><F8> <Cmd>CocCommand fzf-preview.DirectoryFiles<CR>
+
 
 " coc 集成在airline上
 let g:airline#extensions#coc#enabled = 1
@@ -497,6 +446,7 @@ nmap <leader>t :FZF<cr>
 "
 " " FZF floating window
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
 " nmap <leader><F5> :CocFzfList diagnostics<cr>
 
 
@@ -521,7 +471,7 @@ xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F
 
 nnoremap <silent> [fzf-p]co     :<C-u>CocCommand fzf-preview.CocOutline<CR>
 nnoremap <silent> [fzf-p]tc     :<C-u>CocCommand fzf-preview.TodoComments<CR>
-
+nnoremap <silent> [fzf-p]qf     :<C-u>CocCommand fzf-preview.QuickFix<CR>
 nnoremap <silent> [fzf-p]cd     :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
 
 
@@ -636,7 +586,7 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '│␤'
 let g:airline_symbols.maxlinenr = '│'
 let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.notexists = ' ∄'
 let g:airline_symbols.whitespace = ''
 let g:airline_symbols.crypt = ''
 let g:airline_symbols.paste = 'Þ'
@@ -779,7 +729,7 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'ctrlpvim/ctrlp.vim'
 " let g:ctrlp_map = '<leader>p'
 " let g:ctrlp_cmd = 'CtrlP'
-" map <leader>f :CtrlPMRU<CR>
+" " map <leader>f :CtrlPMRU<CR>
 " let g:ctrlp_custom_ignore = {
 "     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
 "     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
@@ -793,11 +743,11 @@ Plug 'sheerun/vim-polyglot'
 """
 
 """ ctrlp-funky 用于 ctrlp.vim 的超级简单函数导航器。
-Plug 'tacahiroy/ctrlp-funky'
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-let g:ctrlp_funky_syntax_highlight = 1
-let g:ctrlp_extensions = ['funky']
+" Plug 'tacahiroy/ctrlp-funky'
+" " nnoremap <Leader>fu :CtrlPFunky<Cr>
+" " nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+" let g:ctrlp_funky_syntax_highlight = 1
+" let g:ctrlp_extensions = ['funky']
 """
 
 """ devicons
@@ -877,22 +827,13 @@ call plug#end()
 """Shortcuts"""
 """""""""""""""
 
-" 剪贴板
-nmap <leader><leader>v "+gp
-" nmap <leader><leader>y "+y
-nmap <C-y> "+y
-
-" python import sort
-nnoremap <Leader><F6> :CocCommand pyright.organizeimports<CR>:w<CR>
-
 " 保存快捷键
 func! SetSaveKey()
-    " if &filetype == 'python' || &filetype == 'python3'
-    "   nmap <leader>w :call CocAction("format")<CR>:w!<CR>
-    " else
-    "   nmap <leader>w :w!<CR>
-    " endif
-    nmap <leader>w :call CocAction("format")<CR>:w!<CR>
+    if &filetype == 'python' || &filetype == 'python3'
+      nmap <leader>w :call CocAction("format")<CR>:w!<CR>
+    else
+      nmap <leader>w :w!<CR>
+    endif
 endfunc
 autocmd BufRead * call SetSaveKey()
 
@@ -933,15 +874,12 @@ nnoremap <silent> < :exe "vertical resize " . (winwidth(0) * 3/4)<CR>
 " 在当前buffer所在的目录打开一个新的tab，非常有用
 " map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
-" 将路径定位到当前buffer所在的目录
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
 
 " 设置折叠快捷键
-" nnoremap <space> za
-" vnoremap <space> zf
-" nnoremap <leader><space> zO
-" vnoremap <leader><space> zf
+nnoremap <space> za
+vnoremap <space> zf
+nnoremap <leader><space> zO
+vnoremap <leader><space> zf
 
 
 " 设置 python 运行代码
@@ -962,17 +900,17 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 " map <leader><F9> :call CompileRunGcc()<CR>
 
 " F9用来在Finder中打开当前的目录
-map <leader><F9> :call OpenCurrDir()<CR><CR>
-func! OpenCurrDir()
-    exec "!open . "                                                                         
-endfunc
+" map <leader><F9> :call OpenCurrDir()<CR><CR>
+" func! OpenCurrDir()
+"     exec "!open . "
+" endfunc
 
 " 设置更新ctags的快捷键
-map <leader><F10> :call UpdateCtags()<CR>
-func! UpdateCtags()
-    " exec "!time ctags -R ."
-    exec "!time ctags --fields=+aiKSz --extras=+q --exclude=.pyc --exclude=.git --exclude=node_modules --exclude=.env --exclude=.idea -R &"
-endfunc
+" map <leader><F10> :call UpdateCtags()<CR>
+" func! UpdateCtags()
+"     " exec "!time ctags -R ."
+"     exec "!time ctags --fields=+aiKSz --extras=+q --exclude=.pyc --exclude=.git --exclude=node_modules --exclude=.env --exclude=.idea -R &"
+" endfunc
 
 
 " 新建py文件自动添加头部信息
@@ -996,7 +934,7 @@ func! g:HeaderPython()
   normal o
 endfunc
 autocmd bufnewfile *.py call HeaderPython()
-map <Leader><F8> :call HeaderPython()<CR>
+" map <Leader><F8> :call HeaderPython()<CR>
 
 " 搜索高亮设置
 " 当光标一段时间保持不动了，就禁用高亮
