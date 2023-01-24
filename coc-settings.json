@@ -55,7 +55,7 @@
   "jedi.executable.args": [],
   "jedi.codeAction.nameExtractFunction": "jls_extract_def",
   "jedi.codeAction.nameExtractVariable": "jls_extract_var",
-  "jedi.completion.disableSnippets": false,
+  "jedi.completion.disableSnippets": true,
   "jedi.completion.resolveEagerly": false,
   "jedi.completion.ignorePatterns": [],
   "jedi.diagnostics.enable": false,
@@ -119,18 +119,18 @@
     }
   },
   "diagnostic-languageserver.formatFiletypes": {
-    // "python": ["black", "isort", "docformatter"]
-    "python": ["black", "docformatter"]
+    "python": ["black", "isort", "docformatter"]
+    // "python": ["black", "docformatter"]
   },
   "diagnostic-languageserver.formatters": {
     "black": {
       "command": "black",
       "args": ["-q", "-"]
     },
-    // "isort": {
-    //   "command": "isort",
-    //   "args": ["-q", "-"]
-    // },
+    "isort": {
+      "command": "isort",
+      "args": ["-q", "-"]
+    },
     "docformatter": {
       "command": "docformatter",
       "args": ["-"]
@@ -149,7 +149,7 @@
   },
 
   // coc-ultisnips
-  "snippets.ultisnips.pythonPrompt": false,
+  // "snippets.ultisnips.pythonPrompt": false,
 
   // CocOutline
   "outline.sortBy": "position",

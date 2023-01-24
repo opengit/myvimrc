@@ -293,9 +293,10 @@ let airline#extensions#coc#warning_symbol = "🚨"
 " let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 " 自动安装这些插件
+" 'coc-snippets',
 let g:coc_global_extensions = ['coc-html','coc-css', 'coc-json',
-            \ 'coc-lists','coc-markdownlint', 'coc-snippets', 'coc-explorer',
-            \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git', 'coc-ultisnips', 'coc-fzf-preview',
+            \ 'coc-lists','coc-markdownlint', 'coc-explorer',
+            \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git',  'coc-fzf-preview',
             \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji','coc-omni', 'coc-jedi', 'coc-diagnostic', 'coc-tsserver', 'coc-prettier']
 
 " if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -337,87 +338,6 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 xmap <leader>x  <Plug>(coc-convert-snippet)
 """
-
-"""
-" Plug 'majutsushi/tagbar'
-" nmap <F4> :TagbarToggle<CR>
-" let g:tagbar_autofocus = 1
-" let g:tagbar_width = 40
-" let g:tagbar_sort = 0
-"""
-
-"""
-" Plug 'liuchengxu/vista.vim'
-" function! NearestMethodOrFunction() abort
-"   return get(b:, 'vista_nearest_method_or_function', '')
-" endfunction
-" set statusline+=%{NearestMethodOrFunction()}
-" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-" nmap <leader><F4> :Vista!!<CR>
-" " let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-" " let g:vista_icon_indent = ["▸ ", ""]
-" let g:vista_icon_indent = ["+", "-"]
-" let g:vista_default_executive = 'ctags'
-" " let g:vista_ctags_cmd = {
-" "       \ 'haskell': 'hasktags -x -o - -c',
-" "       \ }
-" let g:vista_fzf_preview = ['right:50%']
-" let g:vista#renderer#enable_icon = 1
-" let g:vista#renderer#icons = {
-" \   "function": "\u0192",
-" \    "variable": "\ue79b",
-" \  }
-"""
-
-"""
-" Plug 'preservim/nerdtree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-"
-" " 开启/关闭nerdtree快捷键
-" " nnoremap <leader><F3> :NERDTreeToggle<CR>
-"
-" " 自动开启Nerdtree
-" " autocmd vimenter * NERDTreeToggle
-"
-" "设定 NERDTree 视窗大小
-" let g:NERDTreeWinSize = 50
-"
-" " 开启Nerdtree时自动显示Bookmarks
-" " let NERDTreeShowBookmarks=1
-"
-" " 是否使用:edit命令时打开第二NerdTree
-" let g:NERDTreeHijackNetrw=0
-"
-" " 当NERDTree为剩下的唯一窗口时自动关闭
-" " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"
-" "设置树的显示图标
-" " let g:NERDTreeDirArrowExpandable = '▸'
-" " let g:NERDTreeDirArrowCollapsible = '▾'
-" let g:NERDTreeDirArrowExpandable = '+'
-" let g:NERDTreeDirArrowCollapsible = '-'
-" " let g:NERDTreeDirArrowExpandable = '|'
-" " let g:NERDTreeDirArrowCollapsible = '/'
-"
-"
-" " 自动刷新
-" autocmd BufEnter NERD_tree_* | execute 'normal R'
-"
-"
-" " 过滤所有.pyc文件不显示
-" let NERDTreeIgnore = ['\.pyc$']
-"
-" " 是否显示行号
-" let g:NERDTreeShowLineNumbers=1
-"
-" " 隐藏文件
-" let g:NERDTreeHidden=0
-"
-" " Making it prettier
-" let NERDTreeMinimalUI = 1
-" let NERDTreeDirArrows = 1
-"""
-
 
 """
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
@@ -724,48 +644,10 @@ let g:NERDCommentEmptyLines = 1
 Plug 'sheerun/vim-polyglot'
 """
 
-""" ctrlp
-" Plug 'kien/ctrlp.vim'
-" Plug 'ctrlpvim/ctrlp.vim'
-" let g:ctrlp_map = '<leader>p'
-" let g:ctrlp_cmd = 'CtrlP'
-" " map <leader>f :CtrlPMRU<CR>
-" let g:ctrlp_custom_ignore = {
-"     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-"     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-"     \ }
-" let g:ctrlp_working_path_mode=0
-" let g:ctrlp_match_window_bottom=1
-" let g:ctrlp_max_height=15
-" let g:ctrlp_match_window_reversed=0
-" let g:ctrlp_mruf_max=500
-" let g:ctrlp_follow_symlinks=1
-"""
-
-""" ctrlp-funky 用于 ctrlp.vim 的超级简单函数导航器。
-" Plug 'tacahiroy/ctrlp-funky'
-" " nnoremap <Leader>fu :CtrlPFunky<Cr>
-" " nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-" let g:ctrlp_funky_syntax_highlight = 1
-" let g:ctrlp_extensions = ['funky']
-"""
-
 """ devicons
 Plug 'ryanoasis/vim-devicons'
 """
 
-"""
-" Plug 'godlygeek/tabular', {'for': 'md'} 
-" Plug 'plasticboy/vim-markdown', {'for': 'md'} 
-" let g:vim_markdown_folding_disabled = 1
-" let g:vim_markdown_override_foldtext = 0
-" let g:vim_markdown_no_default_key_mappings = 1
-" let g:vim_markdown_conceal = 0
-"""
-
-"""
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-"""
 
 """
 Plug 'luochen1990/rainbow'
@@ -801,6 +683,8 @@ let g:python_highlight_all = 1
 
 """
 Plug 'mlaursen/vim-react-snippets'
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 """
 
 """
