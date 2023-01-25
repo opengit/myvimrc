@@ -683,10 +683,14 @@ let g:python_highlight_all = 1
 Plug 'mlaursen/vim-react-snippets'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
+
+let g:UltiSnipsExpandTrigger="<c-x>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 """
 
 """
-Plug 'chemzqm/wxapp.vim'
+" Plug 'chemzqm/wxapp.vim'
 """
 
 """
