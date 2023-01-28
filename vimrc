@@ -281,12 +281,12 @@ let g:airline#extensions#coc#enabled = 1
 " let airline#extensions#coc#warning_symbol = 'W: '
 " let airline#extensions#coc#error_symbol = '💥'
 " let airline#extensions#coc#warning_symbol = '⚡️'
-let airline#extensions#coc#error_symbol = "🔥"
-let airline#extensions#coc#warning_symbol = "🚨"
+" let airline#extensions#coc#error_symbol = "🔥"
+" let airline#extensions#coc#warning_symbol = "🚨"
 " let airline#extensions#coc#error_symbol = '🞫'
 " let airline#extensions#coc#warning_symbol = '⯁'
-" let airline#extensions#coc#error_symbol = ''
-" let airline#extensions#coc#warning_symbol = ''
+let airline#extensions#coc#error_symbol = ''
+let airline#extensions#coc#warning_symbol = ''
 " let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 " let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
@@ -294,16 +294,9 @@ let airline#extensions#coc#warning_symbol = "🚨"
 " 'coc-snippets',
 let g:coc_global_extensions = ['coc-html','coc-css', 'coc-json',
             \ 'coc-lists','coc-markdownlint', 'coc-explorer',
-            \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git',  'coc-fzf-preview',
+            \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git',  'coc-fzf-preview', 'coc-snippets',
             \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji','coc-omni', 'coc-jedi', 'coc-diagnostic', 'coc-tsserver', 'coc-prettier']
 
-" if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-"   let g:coc_global_extensions += ['coc-prettier']
-" endif
-" 
-" if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-"   let g:coc_global_extensions += ['coc-eslint']
-" endif
 
 " 根据是否有诊断信息，来决定当鼠标悬停时，是显示文档还是显示诊断信息
 function! ShowDocIfNoDiagnostic(timer_id)
@@ -716,6 +709,10 @@ call plug#end()
 " 保存快捷键
 func! SetSaveKey()
     if &filetype == 'python' || &filetype == 'python3'
+                \ || &filetype == 'typescript' || &filetype == 'typescriptreact'
+                \ || &filetype == 'javascript' || &filetype == 'javascriptreact'
+                \ || &filetype == 'json' || &filetype == 'html' || &filetype == 'css' || &filetype == 'less' || &filetype == 'xml'
+                \ || &filetype == 'yaml'
       nmap <leader>w :call CocAction("format")<CR>:w!<CR>
     else
       nmap <leader>w :w!<CR>
