@@ -65,9 +65,7 @@ call plug#begin('~/.vim/plugins')
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-gruvbox8'
-Plug 'lifepillar/vim-solarized8'
 Plug 'sainnhe/gruvbox-material'
-Plug 'NLKNguyen/papercolor-theme'
 """
 
 """ coc.nvim
@@ -279,7 +277,7 @@ let airline#extensions#coc#warning_symbol = ''
 " 自动安装这些插件
 let g:coc_global_extensions = ['coc-html','coc-css', 'coc-json',
             \ 'coc-lists','coc-markdownlint', 'coc-explorer',
-            \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git',  'coc-fzf-preview',
+            \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git',  'coc-fzf-preview', 'coc-snippets',
             \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji','coc-omni', 'coc-jedi', 'coc-diagnostic', 'coc-tsserver', 'coc-prettier']
 
 
@@ -660,6 +658,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 """
 
 """
+" Plug 'chemzqm/wxapp.vim'
+"""
+
+"""
 " Plug 'github/copilot.vim'
 " let g:copilot_no_tab_map = v:true
 " inoremap <silent><expr> <TAB>
@@ -682,6 +684,10 @@ call plug#end()
 " 保存快捷键
 func! SetSaveKey()
     if &filetype == 'python' || &filetype == 'python3'
+                \ || &filetype == 'typescript' || &filetype == 'typescriptreact'
+                \ || &filetype == 'javascript' || &filetype == 'javascriptreact'
+                \ || &filetype == 'json' || &filetype == 'html' || &filetype == 'css' || &filetype == 'less' || &filetype == 'xml'
+                \ || &filetype == 'yaml'
       nmap <leader>w :call CocAction("format")<CR>:w!<CR>
     else
       nmap <leader>w :w!<CR>
@@ -972,36 +978,33 @@ let g:loaded_netrwPlugin=1
 " set t_Co=256
 syntax enable
 
-
-" let g:airline_theme='gruvbox'
-" colorscheme gruvbox
-" soft, medium, hard
-" let g:gruvbox_contrast_dark='medium'
-" set background=dark
-
-
-let g:airline_theme='gruvbox8'
-" colorscheme gruvbox8
-colorscheme gruvbox8_hard
-" colorscheme gruvbox8_soft
-set background=dark
-
-
 " let g:airline_theme='dracula'
 " colorscheme dracula
 
 
-" let g:airline_theme='solarized'
-" colorscheme solarized8_high
-" colorscheme solarized8
-" colorscheme solarized8_low
-" colorscheme solarized8_flat
-
-" PaperColor theme
-" set background=light
+" let g:airline_theme='gruvbox'
+" colorscheme gruvbox
+" soft, medium, hard
+" let g:gruvbox_contrast_dark='hard'
 " set background=dark
-" colorscheme PaperColor
-" let g:airline_theme='papercolor'
+
+
+" let g:airline_theme='gruvbox8'
+" colorscheme gruvbox8
+" colorscheme gruvbox8_hard
+" colorscheme gruvbox8_soft
+" set background=dark
+
+
+let g:airline_theme = 'gruvbox_material'
+" light or dark
+set background=dark
+" Available values: 'hard', 'medium'(default), 'soft'
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
+
+
 
 " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h10
 set guifont=Sarasa\ Mono\ SC\ Nerd:h12
