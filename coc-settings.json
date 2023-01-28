@@ -186,5 +186,6 @@
     "D": "",
     "ma": "",
     "mA": ""
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
