@@ -49,6 +49,11 @@ imap <F1> <C-o>:echo<CR>
 nmap <leader><F1> :help<CR>
 """
 
+""" 进入当前文件所在文件夹
+nmap <leader>cd :lcd %:p:h<CR>
+" autocmd BufEnter * silent! lcd %:p:h
+"""
+
 
 """vim-plug
 " Automatic installation of vim-plug
