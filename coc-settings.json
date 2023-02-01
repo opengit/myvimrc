@@ -46,7 +46,7 @@
   // coc-pyright
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": [
-        "--max-line-length=79",
+        "--max-line-length=79"
   ],
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
@@ -57,6 +57,10 @@
   ],
   "pyright.inlayHints.functionReturnTypes": false,
   "pyright.inlayHints.variableTypes": false,
+  // "python.analysis.typeCheckingMode": "off",
+  "python.analysis.diagnosticSeverityOverrides": {
+      "reportWildcardImportFromLibrary": "information"
+  },
 
   // diagnostic
   "diagnostic.warningSign": "W",
