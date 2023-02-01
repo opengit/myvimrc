@@ -89,5 +89,4 @@
   "explorer.previewAction.onHover": "labeling",
   "explorer.enableFloatinput": true,
   "explorer.git.enable": true,
-  "snippets.ultisnips.pythonPrompt": false
 }

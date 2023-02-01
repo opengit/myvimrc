@@ -111,11 +111,6 @@ else
 endif
 
 
-" 使用[g和]g浏览诊断
-" 使用:Co Diagnostics获取位置列表中当前缓冲区的所有诊断信息。
-" nmap <silent> [g <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
 " 代码导航、跳转快捷键
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -137,10 +132,6 @@ endfunction
 
 " 按住光标时突出显示该符号及其参考
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" 格式化选中的代码
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -182,19 +173,12 @@ omap ac <Plug>(coc-classobj-a)
 " inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
 " inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 
-" if has('nvim-0.4.0') || has('patch-8.2.0750')
 nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
 inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-" endif
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-" nmap <silent> <C-s> <Plug>(coc-range-select)
-" xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
@@ -291,7 +275,6 @@ let airline#extensions#coc#warning_symbol = ''
 " let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 " 自动安装这些插件
-" 'coc-snippets',
 let g:coc_global_extensions = ['coc-html','coc-css', 'coc-json',
             \ 'coc-lists','coc-markdownlint', 'coc-explorer',
             \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git',  'coc-fzf-preview', 'coc-snippets',
@@ -321,13 +304,6 @@ let g:coc_filetype_map = {
   \ }
 
 
-" coc-snippets
-imap <C-l> <Plug>(coc-snippets-expand)
-vmap <C-j> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-k>'
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-xmap <leader>x  <Plug>(coc-convert-snippet)
 """
 
 """
@@ -357,7 +333,7 @@ nmap <leader>t :FZF<cr>
 "
 " " FZF floating window
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
 " nmap <leader><F5> :CocFzfList diagnostics<cr>
 
 
@@ -676,7 +652,6 @@ let g:python_highlight_all = 1
 Plug 'mlaursen/vim-react-snippets'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
-
 let g:UltiSnipsExpandTrigger="<c-x>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -1002,8 +977,6 @@ let g:loaded_netrwPlugin=1
 "endif
 " set t_Co=256
 syntax enable
-
-
 
 " let g:airline_theme='dracula'
 " colorscheme dracula
