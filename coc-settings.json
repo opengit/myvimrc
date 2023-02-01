@@ -46,7 +46,7 @@
   // coc-pyright
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": [
-        "--max-line-length=79"
+        "--line-length=79"
   ],
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
@@ -59,7 +59,7 @@
   "pyright.inlayHints.variableTypes": false,
   // "python.analysis.typeCheckingMode": "off",
   "python.analysis.diagnosticSeverityOverrides": {
-      "reportWildcardImportFromLibrary": "information"
+      "reportWildcardImportFromLibrary": "none"
   },
 
   // diagnostic
@@ -97,4 +97,5 @@
   "explorer.previewAction.onHover": "labeling",
   "explorer.enableFloatinput": true,
   "explorer.git.enable": true,
+  "snippets.ultisnips.pythonPrompt": false,
 }
