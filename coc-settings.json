@@ -63,10 +63,14 @@
   },
 
   // diagnostic
-  "diagnostic.warningSign": "W",
-  "diagnostic.errorSign": "E",
-  "diagnostic.infoSign": "I",
-  "diagnostic.hintSign": "H",
+  // "diagnostic.warningSign": "W",
+  // "diagnostic.errorSign": "E",
+  // "diagnostic.infoSign": "I",
+  // "diagnostic.hintSign": "H",
+  "diagnostic.errorSign": "\uf467",
+  "diagnostic.warningSign": "\uf071",
+  "diagnostic.infoSign": "\uf129",
+  "diagnostic.hintSign": "\uf864",
 
   // coc-emmet
   "emmet.includeLanguages": {
