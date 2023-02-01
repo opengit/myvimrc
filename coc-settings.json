@@ -43,99 +43,26 @@
     "default": " "
   },
 
-  //jedi
-  "jedi.enable": true,
-  "jedi.startupMessage": false,
-  "jedi.markupKindPreferred": "plaintext",
-  "jedi.trace.server": "off",
-  "jedi.jediSettings.autoImportModules": [],
-  "jedi.jediSettings.caseInsensitiveCompletion": false,
-  "jedi.jediSettings.debug": false,
-  "jedi.executable.command": "jedi-language-server",
-  "jedi.executable.args": [],
-  "jedi.codeAction.nameExtractFunction": "jls_extract_def",
-  "jedi.codeAction.nameExtractVariable": "jls_extract_var",
-  "jedi.completion.disableSnippets": false,
-  "jedi.completion.resolveEagerly": false,
-  "jedi.completion.ignorePatterns": [],
-  "jedi.diagnostics.enable": false,
-  "jedi.diagnostics.didOpen": true,
-  "jedi.diagnostics.didChange": true,
-  "jedi.diagnostics.didSave": true,
-  "jedi.hover.enable": true,
-  "jedi.hover.disable.keyword.all": false,
-  "jedi.hover.disable.keyword.names": [],
-  "jedi.hover.disable.keyword.fullNames": [],
-  "jedi.workspace.extraPaths": [],
-  // "jedi.workspace.environmentPath": "/path/to/venv/bin/python",
-  "jedi.workspace.symbols.maxSymbols": 20,
-  "jedi.workspace.symbols.ignoreFolders": [
-    ".nox",
-    ".tox",
-    ".venv",
-    "__pycache__",
-    "venv"
+  // coc-pyright
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": [
+        "--max-line-length=79",
   ],
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": [
+        "--ignore=F401,F403,F405,E402,C901,W503,W504,E116,E702,C0103,C0114,C0115,C0116,C0103,C0301,W0613,W0102,R0903,R0902,R0914,R0915,R0205,W0703,W0702,W0603",
+        "--max-line-length=79",
+        "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s",
+        "-"
+  ],
+  "pyright.inlayHints.functionReturnTypes": false,
+  "pyright.inlayHints.variableTypes": false,
 
   // diagnostic
   "diagnostic.warningSign": "W",
   "diagnostic.errorSign": "E",
   "diagnostic.infoSign": "I",
   "diagnostic.hintSign": "H",
-  "diagnostic-languageserver.filetypes": {
-    "python": "flake8"
-  },
-  "diagnostic-languageserver.linters": {
-    "flake8": {
-      "sourceName": "flake8",
-      "command": "flake8",
-      "debounce": 200,
-      "rootPatterns": [".git", "pyproject.toml", "setup.py"],
-      "args": [
-        "--ignore=F401,F403,F405,E402,C901,W503,W504,E116,E702,C0103,C0114,C0115,C0116,C0103,C0301,W0613,W0102,R0903,R0902,R0914,R0915,R0205,W0703,W0702,W0603",
-        "--max-line-length=88",
-        "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s",
-        "-"
-      ],
-      "offsetLine": 0,
-      "offsetColumn": 0,
-      "formatLines": 1,
-      "formatPattern": [
-        "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
-        {
-          "line": 1,
-          "column": 2,
-          "security": 3,
-          "message": 4
-        }
-      ],
-      "securities": {
-        "W": "info",
-        "E": "warning",
-        "F": "info",
-        "C": "info",
-        "N": "hint"
-      }
-    }
-  },
-  "diagnostic-languageserver.formatFiletypes": {
-    "python": ["black", "isort", "docformatter"]
-    // "python": ["black", "docformatter"]
-  },
-  "diagnostic-languageserver.formatters": {
-    "black": {
-      "command": "black",
-      "args": ["-q", "-"]
-    },
-    "isort": {
-      "command": "isort",
-      "args": ["-q", "-"]
-    },
-    "docformatter": {
-      "command": "docformatter",
-      "args": ["-"]
-    }
-  },
 
   // coc-emmet
   "emmet.includeLanguages": {
@@ -148,9 +75,6 @@
     "js": "typescriptreact"
   },
 
-  // coc-ultisnips
-  // "snippets.ultisnips.pythonPrompt": false,
-
   // CocOutline
   "outline.sortBy": "position",
   "outline.followCursor": true,
@@ -158,11 +82,6 @@
   "outline.autoPreview": true,
 
   // coc-explorer
-  // "explorer.floating.width": 60,
-  // "explorer.floating.position": "center",
-  // "explorer.buffer.root.template": "[icon & 1] OPEN EDITORS",
-  // "explorer.file.root.template": "[icon & 1] PROJECT ([root])",
-  // "explorer.file.child.template": "[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5]",
   "explorer.file.showHiddenFiles": true,
   "explorer.file.reveal.auto": true,
   "explorer.icon.source": "vim-devicons",
@@ -170,5 +89,4 @@
   "explorer.previewAction.onHover": "labeling",
   "explorer.enableFloatinput": true,
   "explorer.git.enable": true,
-  "snippets.ultisnips.pythonPrompt": false,
 }
