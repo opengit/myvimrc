@@ -6,12 +6,9 @@
   "signature.target": "float",
   "suggest.timeout": 15000,
   "suggest.triggerCompletionWait": 10,
-  "suggest.floatEnable": true,
-  "suggest.enablePreview": true,
   "suggest.maxCompleteItemCount": 30,
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 2,
-  "suggest.fixInsertedWord": true,
   "suggest.localityBonus": true,
   "suggest.formatItems": ["abbr", "menu", "kind"],
   "suggest.completionItemKindLabels": {
@@ -57,7 +54,7 @@
   ],
   "pyright.inlayHints.functionReturnTypes": false,
   "pyright.inlayHints.variableTypes": false,
-  // "python.analysis.typeCheckingMode": "off",
+  "python.analysis.typeCheckingMode": "off",
   "python.analysis.diagnosticSeverityOverrides": {
       "reportWildcardImportFromLibrary": "none"
   },
