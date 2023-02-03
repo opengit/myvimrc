@@ -18,9 +18,8 @@
 " <leader><F3>   ->    coc explorer
 " <leader><F4>   ->    coc outline
 " <leader><F5>   ->     diagnostics
-" <leader><F6>   ->    quickfix
-" <leader><F7>   ->    fzf ripgrep file content
-" <leader><F8>   ->    fzf file search
+" <leader><F6>   ->    fzf files
+" <leader><F7>   ->    Rg full text search
 
 
 
@@ -187,6 +186,7 @@ vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
+nmap <leader>f <Cmd>Format<CR>
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call CocActionAsync('fold', <f-args>)
@@ -201,25 +201,25 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " set statusline^=%{coc#status()}
 
 
-" Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-" QuickFix
-nnoremap <silent><nowait> <space>qf  :<C-u>CocList quickfix<cr>
+" " Mappings for CoCList
+" " Show all diagnostics.
+" nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" " Manage extensions.
+" nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" " Show commands.
+" nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" " Find symbol of current document.
+" nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" " Search workspace symbols.
+" nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" " Do default action for next item.
+" nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" " Do default action for previous item.
+" nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" " Resume latest coc list.
+" nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" " QuickFix
+" nnoremap <silent><nowait> <space>qf  :<C-u>CocList quickfix<cr>
 
 " coc-explorer
 let g:coc_explorer_global_presets = {
@@ -240,28 +240,12 @@ if has('nvim')
 else
     nmap <leader><F3> <Cmd>CocCommand explorer<CR>
 endif
-
 " Use preset argument to open it
 nmap <space>ed <Cmd>CocCommand explorer --preset .vim<CR>
 nmap <space>ef <Cmd>CocCommand explorer --preset floating<CR>
 nmap <space>ec <Cmd>CocCommand explorer --preset cocConfig<CR>
 " List all presets
 nmap <space>el <Cmd>CocList explPresets<CR>
-
-" CocOutline
-nmap <leader><F4> <Cmd>CocCommand fzf-preview.CocOutline<CR>
-
-" coc diagnostics
-nmap <leader><F5> <Cmd>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
-
-" coc quickfix
-nmap <leader><F6> <Cmd>CocCommand fzf-preview.QuickFix<CR>
-
-" coc ripgrep
-nmap <leader><F7> <Cmd>Rg<CR>
-
-
-nmap <leader><F8> <Cmd>CocCommand fzf-preview.DirectoryFiles<CR>
 
 
 " coc 集成在airline上
@@ -282,7 +266,7 @@ let airline#extensions#coc#warning_symbol = ''
 " 自动安装这些插件
 let g:coc_global_extensions = ['coc-html','coc-css', 'coc-json',
             \ 'coc-lists','coc-markdownlint', 'coc-explorer',
-            \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git',  'coc-fzf-preview', 'coc-snippets',
+            \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git', 'coc-snippets',
             \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji','coc-omni', 'coc-pyright', 'coc-tsserver', 'coc-prettier']
 
 
@@ -315,74 +299,76 @@ let g:coc_filetype_map = {
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
-"
-" " makes fzf work related to git root of buffer which is nice
+
+" makes fzf work related to git root of buffer which is nice
 Plug 'airblade/vim-rooter'
-"
-" " Allow fzf search as \t
+
+" Allow fzf search as \t
 nmap <leader>t :FZF<cr>
-"
-" " Update fzf.vim actions for bindings like command-t
-" let g:fzf_action = {
-"       \ 'ctrl-s': 'split',
-"       \ 'ctrl-t': 'tabedit',
-"       \ 'ctrl-v': 'vsplit',
-"       \ }
-" let g:fzf_layout = { 'down': '~40%' }
-"
-" " this allows the escape key to close the fzf window matching coc.nvim
-" " if has("nvim")
-" "   au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
-" "   au FileType fzf tunmap <buffer> <Esc>
-" " endif
-"
-" " FZF floating window
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
+
+" Update fzf.vim actions for bindings like command-t
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-t': 'tabedit',
+      \ 'ctrl-v': 'vsplit',
+      \ }
+
+" this allows the escape key to close the fzf window matching coc.nvim
+if has("nvim")
+  au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+  au FileType fzf tunmap <buffer> <Esc>
+endif
+
+" Popup window (center of the current window)
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+
+" shortcut
+" code outline
+nmap <leader><F4> :CocFzfList outline<cr>
+
+" code diagnostics
 " nmap <leader><F5> :CocFzfList diagnostics<cr>
+nmap <leader><F5> :CocFzfList diagnostics --current-buf<cr>
 
+" fzf files
+nmap <leader><F6> <Cmd>FZF<CR>
 
-nmap <Leader>f [fzf-p]
-xmap <Leader>f [fzf-p]
+" fzf full-text search
+nmap <leader><F7> <Cmd>Rg<CR>
 
-nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
-nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
-nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
-nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
-nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
-nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
-nnoremap <silent> [fzf-p]<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
-nnoremap <silent> [fzf-p]g;    :<C-u>CocCommand fzf-preview.Changes<CR>
-nnoremap <silent> [fzf-p]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
-nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
-nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
-xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
-" nnoremap <silent> [fzf-p]t     :<C-u>CocCommand fzf-preview.BufferTags<CR>
-" nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
-" nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
+" Another set of shortcuts
+nnoremap <silent> <space><space> :<C-u>CocFzfList<CR>
+nnoremap <silent> <space>a       :<C-u>CocFzfList diagnostics<CR>
+nnoremap <silent> <space>b       :<C-u>CocFzfList diagnostics --current-buf<CR>
+nnoremap <silent> <space>c       :<C-u>CocFzfList commands<CR>
+nnoremap <silent> <space>e       :<C-u>CocFzfList extensions<CR>
+nnoremap <silent> <space>l       :<C-u>CocFzfList location<CR>
+nnoremap <silent> <space>o       :<C-u>CocFzfList outline<CR>
+nnoremap <silent> <space>s       :<C-u>CocFzfList symbols<CR>
+nnoremap <silent> <space>p       :<C-u>CocFzfListResume<CR>
 
-nnoremap <silent> [fzf-p]co     :<C-u>CocCommand fzf-preview.CocOutline<CR>
-nnoremap <silent> [fzf-p]tc     :<C-u>CocCommand fzf-preview.TodoComments<CR>
-nnoremap <silent> [fzf-p]qf     :<C-u>CocCommand fzf-preview.QuickFix<CR>
-nnoremap <silent> [fzf-p]cd     :<C-u>CocCommand fzf-preview.CocCurrentDiagnostics<CR>
-
-
-"""
-
-"""
-" Vim Script
-Plug 'nvim-lua/plenary.nvim'
-Plug 'folke/todo-comments.nvim'
 """
 
 """ 支持git
 Plug 'tpope/vim-fugitive'
 """
-
-""" 平滑滚动
-Plug 'psliwka/vim-smoothie'
-"""
-
 
 """
 Plug 'vim-airline/vim-airline'
@@ -687,18 +673,7 @@ call plug#end()
 """""""""""""""
 
 " 保存快捷键
-func! SetSaveKey()
-    if &filetype == 'python' || &filetype == 'python3'
-                \ || &filetype == 'typescript' || &filetype == 'typescriptreact'
-                \ || &filetype == 'javascript' || &filetype == 'javascriptreact'
-                \ || &filetype == 'json' || &filetype == 'html' || &filetype == 'css' || &filetype == 'less' || &filetype == 'xml'
-                \ || &filetype == 'yaml'
-      nmap <leader>w :call CocAction("format")<CR>:w!<CR>
-    else
-      nmap <leader>w :w!<CR>
-    endif
-endfunc
-autocmd BufRead * call SetSaveKey()
+nmap <leader>w :w!<CR>
 
 " 设置切换Buffer快捷键
 nnoremap <C-n> :bn<CR>
@@ -706,9 +681,6 @@ nnoremap <C-N> :bp<CR>
 
 " 关闭当前buffer快捷键
 " map <leader>bd :Bclose<cr>:tabclose<cr>gT
-
-" 关闭所有buffers，慎用，因此注释掉
-" map <leader>ba :bufdo bd<cr>
 
 " 在panel面板之间切换快捷键
 nnoremap <C-J> <C-W><C-J>
@@ -743,37 +715,6 @@ nnoremap <space> za
 vnoremap <space> zf
 nnoremap <leader><space> zO
 vnoremap <leader><space> zf
-
-
-" 设置 python 运行代码
-" func! CompileRunGcc()
-"     exec "w" 
-"     if &filetype == 'c' 
-"         exec '!g++ % -o %<'
-"         exec '!time ./%<'
-"     elseif &filetype == 'cpp'
-"         exec '!g++ % -o %<'
-"         exec '!time ./%<'
-"     elseif &filetype == 'python'
-"         exec '!time python3 %'
-"     elseif &filetype == 'sh'
-"         :!time bash %
-"     endif                                                                              
-" endfunc
-" map <leader><F9> :call CompileRunGcc()<CR>
-
-" F9用来在Finder中打开当前的目录
-" map <leader><F9> :call OpenCurrDir()<CR><CR>
-" func! OpenCurrDir()
-"     exec "!open . "
-" endfunc
-
-" 设置更新ctags的快捷键
-" map <leader><F10> :call UpdateCtags()<CR>
-" func! UpdateCtags()
-"     " exec "!time ctags -R ."
-"     exec "!time ctags --fields=+aiKSz --extras=+q --exclude=.pyc --exclude=.git --exclude=node_modules --exclude=.env --exclude=.idea -R &"
-" endfunc
 
 
 " 新建py文件自动添加头部信息
@@ -813,25 +754,10 @@ noremap * *:set hlsearch<cr>
 vnoremap < <gv
 vnoremap > >gv
 
-" 映射以下快捷键，让编辑行位于屏幕中央和中间
-" nnoremap <esc> :noh<cr>zz
-" noremap j gjzz
-" noremap k gkzz
-" noremap n nzz
-" noremap <s-n> <s-n>zz
-" noremap * *zz
-" noremap # #zz
-" noremap <c-o> <c-o>zz
-" noremap <c-i> <c-i>zz
 
 """"""""""""
 """Others"""
 """"""""""""
-" 设置显示tab和空格
-" set list
-" set listchars=tab:>-,trail:-
-" set listchars=tab:>-,eol:$,trail:-
-
 
 " 根据 文件类型设置 tab键是否为空格，以及空格的个数
 func! SetTabType()
@@ -856,31 +782,8 @@ autocmd BufRead * call SetTabType()
 " 当设置成 expandtab 时，缩进用空格来表示，noexpandtab 则是用制表符表示一个缩进
 set expandtab
 
-" 设置折叠的方式
-function s:setfoldmethod()
-  if &filetype == 'python3'
-      set foldmethod=indent
-  elseif &filetype == 'python'
-      set foldmethod=indent
-  else
-      set foldmethod=syntax
-  endif
-endfunction
-" autocmd FileType * call s:setfoldmethod()
 " 打开文件是默认不折叠代码
-set foldlevelstart=99
-
-" 根据文件类型，设置行的长度
-" function s:setlinelength()
-"   if &filetype == 'python3'
-"       set textwidth=80
-"   elseif &filetype == 'python'
-"       set textwidth=80
-"   else
-"       set textwidth=264
-"   endif
-" endfunction
-" autocmd FileType * call s:setlinelength()
+" set foldlevelstart=99
 
 "打开一个文件自动定位到上一次退出的位置
 if has("autocmd")
@@ -895,22 +798,12 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " preview窗口在下方显示
 set splitbelow
 
-" 设置tags目录
-" set tags+=~/.cache/tags
-set tags=./.tags;,.tags
 
 set nu
 set relativenumber
 set cursorline
 set cursorcolumn
-" set wrap
-" set wrapmargin=2
-" 行尾单词整体换行，不截断单词
-" set linebreak
-" set ambiwidth=double
-" let laststatus = 2
 set nowrap
-" set hlsearch
 set showmatch
 set incsearch
 set undofile
@@ -939,8 +832,8 @@ set hidden
 set switchbuf=useopen
 
 " 文件改变自动读入，就像协作一样
-" set autoread
-" autocmd FocusGained,BufEnter * checktime
+set autoread
+autocmd FocusGained,BufEnter * checktime
 
 " 关闭滚动条
 set guioptions-=r
@@ -952,10 +845,6 @@ set guioptions-=L
 set scrolloff=16
 set sidescrolloff=1
 
-" 弹出框样式，比如自动补全的下拉框
-" highlight Pmenu    guibg=darkgrey  guifg=black
-" highlight PmenuSel guibg=lightgrey guifg=black
-
 " 开启鼠标
 set mouse=a
 
@@ -965,9 +854,6 @@ set mouse=a
 " Turn on the Wild menu
 set wildmenu
 set wildmode=list:longest,full
-
-" set lines=60 columns=160 linespace=3
-" set columns=160
 
 " 开启 omni 补全
 set omnifunc=syntaxcomplete#Complete
@@ -1008,7 +894,6 @@ set background=dark
 let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_better_performance = 1
 colorscheme gruvbox-material
-
 
 
 " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h10
