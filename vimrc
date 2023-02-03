@@ -267,7 +267,7 @@ let airline#extensions#coc#warning_symbol = ''
 let g:coc_global_extensions = ['coc-html','coc-css', 'coc-json',
             \ 'coc-lists','coc-markdownlint', 'coc-explorer',
             \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git', 'coc-snippets',
-            \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji','coc-omni', 'coc-pyright', 'coc-tsserver', 'coc-prettier']
+            \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji', 'coc-omni', 'coc-pyright', 'coc-tsserver', 'coc-prettier']
 
 
 " 根据是否有诊断信息，来决定当鼠标悬停时，是显示文档还是显示诊断信息
