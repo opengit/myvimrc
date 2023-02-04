@@ -370,6 +370,12 @@ nnoremap <silent> <space>p       :<C-u>CocFzfListResume<CR>
 Plug 'tpope/vim-fugitive'
 """
 
+""" 平滑滚动
+Plug 'psliwka/vim-smoothie'
+nnoremap <unique> <C-D> <cmd>call smoothie#do("\<C-D>") <CR>
+vnoremap <unique> <C-D> <cmd>call smoothie#do("\<C-D>") <CR>
+"""
+
 """
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
