@@ -254,10 +254,6 @@ let g:airline#extensions#coc#enabled = 1
 " let airline#extensions#coc#warning_symbol = 'W: '
 " let airline#extensions#coc#error_symbol = '💥'
 " let airline#extensions#coc#warning_symbol = '⚡️'
-" let airline#extensions#coc#error_symbol = "🔥"
-" let airline#extensions#coc#warning_symbol = "🚨"
-" let airline#extensions#coc#error_symbol = '🞫'
-" let airline#extensions#coc#warning_symbol = '⯁'
 let airline#extensions#coc#error_symbol = ''
 let airline#extensions#coc#warning_symbol = ''
 " let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
@@ -320,11 +316,11 @@ if has("nvim")
 endif
 
 " Popup window (center of the current window)
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8, 'relative': v:true } }
 
 " Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
+let g:fzf_colors = {
+  \ 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'Comment'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
@@ -372,8 +368,8 @@ Plug 'tpope/vim-fugitive'
 
 """ 平滑滚动
 Plug 'psliwka/vim-smoothie'
-nnoremap <unique> <C-D> <cmd>call smoothie#do("\<C-D>") <CR>
-vnoremap <unique> <C-D> <cmd>call smoothie#do("\<C-D>") <CR>
+" nnoremap <unique> <C-D> <cmd>call smoothie#do("\<C-D>") <CR>
+" vnoremap <unique> <C-D> <cmd>call smoothie#do("\<C-D>") <CR>
 """
 
 """
@@ -808,7 +804,7 @@ set splitbelow
 set nu
 set relativenumber
 set cursorline
-set cursorcolumn
+" set cursorcolumn
 set nowrap
 set showmatch
 set incsearch
@@ -858,8 +854,8 @@ set mouse=a
 " set noshowmode
 
 " Turn on the Wild menu
-set wildmenu
-set wildmode=list:longest,full
+" set wildmenu
+" set wildmode=list:longest,full
 
 " 开启 omni 补全
 set omnifunc=syntaxcomplete#Complete
@@ -869,22 +865,20 @@ let g:loaded_netrw=1
 let g:loaded_netrwPlugin=1
 
 " 主题颜色及字体
-"if has('termguicolors')
+" if has('termguicolors')
 "    set termguicolors
-"endif
+" endif
 " set t_Co=256
 syntax enable
 
 " let g:airline_theme='dracula'
 " colorscheme dracula
 
-
-" let g:airline_theme='gruvbox'
-" colorscheme gruvbox
+let g:airline_theme='gruvbox'
+colorscheme gruvbox
 " soft, medium, hard
-" let g:gruvbox_contrast_dark='hard'
-" set background=dark
-
+let g:gruvbox_contrast_dark='hard'
+set background=dark
 
 " let g:airline_theme='gruvbox8'
 " colorscheme gruvbox8
@@ -893,18 +887,19 @@ syntax enable
 " set background=dark
 
 
-let g:airline_theme = 'gruvbox_material'
+" let g:airline_theme = 'gruvbox_material'
 " light or dark
-set background=dark
+" set background=dark
 " Available values: 'hard', 'medium'(default), 'soft'
-let g:gruvbox_material_background = 'hard'
-let g:gruvbox_material_better_performance = 1
-colorscheme gruvbox-material
+" let g:gruvbox_material_background = 'hard'
+" let g:gruvbox_material_better_performance = 1
+" colorscheme gruvbox-material
 
 
 " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h10
-set guifont=Sarasa\ Mono\ SC\ Nerd:h12
-" set guifont=Iosevka\ Nerd\ Font\ Mono:h11
+" set guifont=Sarasa\ Mono\ SC\ Nerd:h12
+" set guifont=Sarasa\ Mono\ SC\ Nerd:h12
+set guifont=Monego\ Nerd\ Font\ Fix:h12
 
 
 """ 备份文件夹位置
