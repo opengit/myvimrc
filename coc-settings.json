@@ -40,34 +40,97 @@
     "default": " "
   },
 
-  // coc-pyright
-  "python.formatting.provider": "black",
-  "python.formatting.blackArgs": [
-        "--line-length=79"
+  // jedi
+  "jedi.enable": true,
+  "jedi.startupMessage": false,
+  "jedi.markupKindPreferred": "plaintext",
+  "jedi.trace.server": "off",
+  "jedi.jediSettings.autoImportModules": [],
+  "jedi.jediSettings.caseInsensitiveCompletion": false,
+  "jedi.jediSettings.debug": false,
+  "jedi.executable.command": "jedi-language-server",
+  "jedi.executable.args": [],
+  "jedi.codeAction.nameExtractFunction": "jls_extract_def",
+  "jedi.codeAction.nameExtractVariable": "jls_extract_var",
+  "jedi.completion.disableSnippets": false,
+  "jedi.completion.resolveEagerly": false,
+  "jedi.completion.ignorePatterns": [],
+  "jedi.diagnostics.enable": false,
+  "jedi.diagnostics.didOpen": true,
+  "jedi.diagnostics.didChange": true,
+  "jedi.diagnostics.didSave": true,
+  "jedi.hover.enable": true,
+  "jedi.hover.disable.keyword.all": false,
+  "jedi.hover.disable.keyword.names": [],
+  "jedi.hover.disable.keyword.fullNames": [],
+  "jedi.workspace.extraPaths": [],
+  "jedi.workspace.symbols.maxSymbols": 20,
+  "jedi.workspace.symbols.ignoreFolders": [
+    ".nox",
+    ".tox",
+    ".venv",
+    "__pycache__",
+    "venv"
   ],
-  "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": [
-        "--ignore=F401,F403,F405,E402,C901,W503,W504,E116,E702,C0103,C0114,C0115,C0116,C0103,C0301,W0613,W0102,R0903,R0902,R0914,R0915,R0205,W0703,W0702,W0603",
-        "--max-line-length=79",
-        "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s",
-        "-"
-  ],
-  "pyright.inlayHints.functionReturnTypes": false,
-  "pyright.inlayHints.variableTypes": false,
-  "python.analysis.typeCheckingMode": "off",
-  "python.analysis.diagnosticSeverityOverrides": {
-      "reportWildcardImportFromLibrary": "none"
-  },
 
   // diagnostic
-  // "diagnostic.warningSign": "W",
-  // "diagnostic.errorSign": "E",
-  // "diagnostic.infoSign": "I",
-  // "diagnostic.hintSign": "H",
   "diagnostic.errorSign": "\uf467",
   "diagnostic.warningSign": "\uf071",
   "diagnostic.infoSign": "\uf129",
   "diagnostic.hintSign": "\uf864",
+  "diagnostic-languageserver.filetypes": {
+    "python": "flake8"
+  },
+  "diagnostic-languageserver.linters": {
+    "flake8": {
+      "sourceName": "flake8",
+      "command": "flake8",
+      "debounce": 200,
+      "rootPatterns": [".git", "pyproject.toml", "setup.py"],
+      "args": [
+        "--ignore=F401,F403,F405,E402,C901,W503,W504,E116,E702,C0103,C0114,C0115,C0116,C0103,C0301,W0613,W0102,R0903,R0902,R0914,R0915,R0205,W0703,W0702,W0603",
+        "--max-line-length=88",
+        "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s",
+        "-"
+      ],
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "formatLines": 1,
+      "formatPattern": [
+        "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
+        {
+          "line": 1,
+          "column": 2,
+          "security": 3,
+          "message": 4
+        }
+      ],
+      "securities": {
+        "W": "info",
+        "E": "warning",
+        "F": "info",
+        "C": "info",
+        "N": "hint"
+      }
+    }
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "python": ["black", "isort", "docformatter"]
+  },
+  "diagnostic-languageserver.formatters": {
+    "black": {
+      "command": "black",
+      "args": ["-q", "-"]
+    },
+    "isort": {
+      "command": "isort",
+      "args": ["-q", "-"]
+    },
+    "docformatter": {
+      "command": "docformatter",
+      "args": ["-"]
+    }
+  },
 
   // coc-emmet
   "emmet.includeLanguages": {
@@ -93,6 +156,5 @@
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": "labeling",
   "explorer.enableFloatinput": true,
-  "explorer.git.enable": true,
-  "snippets.ultisnips.pythonPrompt": false,
+  "explorer.git.enable": true
 }
