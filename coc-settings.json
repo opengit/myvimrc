@@ -150,11 +150,11 @@
   "outline.autoPreview": true,
 
   // coc-explorer
+  "explorer.git.enable": true,
   "explorer.file.showHiddenFiles": true,
   "explorer.file.reveal.auto": true,
   "explorer.icon.source": "vim-devicons",
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": "labeling",
   "explorer.enableFloatinput": true,
-  "explorer.git.enable": true
 }
