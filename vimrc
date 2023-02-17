@@ -68,8 +68,7 @@ call plug#begin('~/.vim/plugins')
 """ theme
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
-Plug 'lifepillar/vim-gruvbox8'
-Plug 'sainnhe/gruvbox-material'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 """
 
 """ coc.nvim
@@ -274,7 +273,7 @@ function! ShowDocIfNoDiagnostic(timer_id)
   endif
 endfunction
 function! s:show_hover_doc()
-  call timer_start(1000, 'ShowDocIfNoDiagnostic')
+  call timer_start(300, 'ShowDocIfNoDiagnostic')
 endfunction
 autocmd CursorHoldI * :call <SID>show_hover_doc()
 autocmd CursorHold * :call <SID>show_hover_doc()
@@ -866,9 +865,9 @@ let g:loaded_netrw=1
 let g:loaded_netrwPlugin=1
 
 " 主题颜色及字体
-" if has('termguicolors')
-"    set termguicolors
-" endif
+if has('termguicolors')
+   set termguicolors
+endif
 " set t_Co=256
 syntax enable
 
@@ -878,24 +877,15 @@ syntax enable
 let g:airline_theme='gruvbox'
 colorscheme gruvbox
 " soft, medium, hard
-let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_dark='hard'
 set background=dark
 
-" let g:airline_theme='gruvbox8'
-" colorscheme gruvbox8
-" colorscheme gruvbox8_hard
-" colorscheme gruvbox8_soft
-" set background=dark
-
-
-" let g:airline_theme = 'gruvbox_material'
-" light or dark
-" set background=dark
-" Available values: 'hard', 'medium'(default), 'soft'
-" let g:gruvbox_material_background = 'hard'
-" let g:gruvbox_material_better_performance = 1
-" colorscheme gruvbox-material
-
+" let g:airline_theme='base16'
+" colorscheme tokyonight-night
+" colorscheme tokyonight
+" colorscheme tokyonight-storm
+" colorscheme tokyonight-day
+" colorscheme tokyonight-moon
 
 " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h10
 " set guifont=Sarasa\ Mono\ SC\ Nerd:h12
