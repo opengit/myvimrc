@@ -262,7 +262,7 @@ let airline#extensions#coc#warning_symbol = ''
 let g:coc_global_extensions = ['coc-html','coc-css', 'coc-json',
             \ 'coc-lists','coc-markdownlint', 'coc-explorer',
             \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git', 'coc-snippets',
-            \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji', 'coc-omni', 'coc-jedi', 'coc-diagnostic',
+            \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji', 'coc-omni', 'coc-pyright', 'coc-diagnostic',
             \ 'coc-tsserver', 'coc-prettier']
 
 
@@ -637,8 +637,8 @@ let g:rainbow_conf = {
 """
 
 """
-Plug 'vim-python/python-syntax'
-let g:python_highlight_all = 1
+" Plug 'vim-python/python-syntax'
+" let g:python_highlight_all = 1
 """
 
 """
@@ -877,7 +877,7 @@ syntax enable
 let g:airline_theme='gruvbox'
 colorscheme gruvbox
 " soft, medium, hard
-" let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='hard'
 set background=dark
 
 " let g:airline_theme='base16'
