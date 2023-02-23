@@ -5,12 +5,12 @@
   "coc.preferences.enableMarkdown": false,
   "signature.target": "float",
   "suggest.timeout": 15000,
-  "suggest.triggerCompletionWait": 5,
-  "suggest.maxCompleteItemCount": 50,
+  "suggest.triggerCompletionWait": 10,
+  "suggest.maxCompleteItemCount": 36,
   "suggest.autoTrigger": "always",
   "suggest.minTriggerInputLength": 1,
   "suggest.localityBonus": true,
-  // "suggest.formatItems": ["abbr", "menu", "kind"],
+  "suggest.formatItems": ["abbr", "menu", "kind"],
   "suggest.completionItemKindLabels": {
     "constructor": "\ufb25",
     "keyword": "\uf1de",
@@ -41,22 +41,19 @@
   },
 
   // coc-pyright
-  "python.formatting.provider": "black",
+  "pyright.enable": true,
   "python.analysis.typeCheckingMode": "off",
   "pyright.disableDiagnostics": true,
   "pyright.inlayHints.functionReturnTypes": false,
   "pyright.inlayHints.variableTypes": false,
-  "python.analysis.inlayHints.functionReturnTypes": false,
-  "python.analysis.inlayHints.variableTypes": false,
-  "python.analysis.indexing": true,
   "python.formatting.provider": "black",
-  "python.formatting.blackArgs": ["--line-length=79"],
+  "python.formatting.blackArgs": [],
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
     //   // "--ignore=F401,F403,F405,E402,C901,W503,W504,E116,E702,C0103,C0114,C0115,C0116,C0103,C0301,W0613,W0102,R0903,R0902,R0914,R0915,R0205,W0703,W0702,W0603",
     "--ignore=F403",
-    "--max-line-length=79"
+    "--max-line-length=88"
   ],
 
   // diagnostic
