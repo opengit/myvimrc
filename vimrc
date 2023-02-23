@@ -592,7 +592,7 @@ set list lcs=tab:\┆\
 
 """
 Plug 'scrooloose/nerdcommenter'
-let g:NERDSpaceDelims = 1
+let g:NERDSpaceDelims = 0
 let g:NERDCompactSexyComs = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
@@ -865,9 +865,9 @@ let g:loaded_netrw=1
 let g:loaded_netrwPlugin=1
 
 " 主题颜色及字体
-if has('termguicolors')
-   set termguicolors
-endif
+" if has('termguicolors')
+"    set termguicolors
+" endif
 " set t_Co=256
 syntax enable
 
