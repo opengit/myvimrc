@@ -69,6 +69,7 @@ call plug#begin('~/.vim/plugins')
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'hardhackerlabs/theme-vim', { 'as': 'hardhacker' }
 """
 
 """ coc.nvim
@@ -874,11 +875,18 @@ syntax enable
 " let g:airline_theme='dracula'
 " colorscheme dracula
 
-let g:airline_theme='gruvbox'
-colorscheme gruvbox
+" let g:airline_theme='gruvbox'
+" colorscheme gruvbox
 " soft, medium, hard
-let g:gruvbox_contrast_dark='hard'
-set background=dark
+" let g:gruvbox_contrast_dark='hard'
+" set background=dark
+
+
+
+" hardhacker theme
+let g:hardhacker_darker = 1
+colorscheme hardhacker
+let g:airline_theme='dracula'
 
 " let g:airline_theme='base16'
 " colorscheme tokyonight-night
@@ -888,9 +896,9 @@ set background=dark
 " colorscheme tokyonight-moon
 
 " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h10
+set guifont=Sarasa\ Mono\ SC\ Nerd:h12
 " set guifont=Sarasa\ Mono\ SC\ Nerd:h12
-" set guifont=Sarasa\ Mono\ SC\ Nerd:h12
-set guifont=Monego\ Nerd\ Font\ Fix:h12
+" set guifont=Monego\ Nerd\ Font\ Fix:h12
 
 
 """ 备份文件夹位置

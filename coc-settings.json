@@ -87,5 +87,6 @@
   "explorer.icon.source": "vim-devicons",
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": "labeling",
-  "explorer.enableFloatinput": true
+  "explorer.enableFloatinput": true,
+  "snippets.ultisnips.pythonPrompt": false
 }
