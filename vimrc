@@ -264,7 +264,7 @@ let g:coc_global_extensions = ['coc-html','coc-css', 'coc-json',
             \ 'coc-lists','coc-markdownlint', 'coc-explorer',
             \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git', 'coc-snippets',
             \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji', 'coc-omni', 'coc-pyright', 'coc-diagnostic',
-            \ 'coc-tsserver', 'coc-prettier']
+            \ 'coc-tsserver', 'coc-prettier', 'coc-explorer']
 
 
 " 根据是否有诊断信息，来决定当鼠标悬停时，是显示文档还是显示诊断信息
@@ -372,6 +372,7 @@ Plug 'psliwka/vim-smoothie'
 " nnoremap <unique> <C-D> <cmd>call smoothie#do("\<C-D>") <CR>
 " vnoremap <unique> <C-D> <cmd>call smoothie#do("\<C-D>") <CR>
 """
+
 
 """
 Plug 'vim-airline/vim-airline'
@@ -665,6 +666,13 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "       \ coc#refresh()
 " let g:copilot_no_tab_map = v:true
 " imap <silent><script><expr> <C-y> copilot#Accept("\<CR>")
+"""
+
+
+""" Codeium.vim
+Plug 'Exafunction/codeium.vim'
+set statusline+=\{…\}%3{codeium#GetStatusString()}
+let g:airline_section_y = '{…}%3{codeium#GetStatusString()}'
 """
 
 """"""""" --->结束<--- """""""""
