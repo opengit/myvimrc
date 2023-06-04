@@ -686,6 +686,12 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 Plug 'Exafunction/codeium.vim'
 set statusline+=\{…\}%3{codeium#GetStatusString()}
 let g:airline_section_y = '{…}%3{codeium#GetStatusString()}'
+
+let g:codeium_disable_bindings = 1
+imap <script><silent><nowait><expr> <C-g> codeium#Accept()
+imap <C-;>   <Cmd>call codeium#CycleCompletions(1)<CR>
+imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
+imap <C-x>   <Cmd>call codeium#Clear()<CR>
 """
 
 """"""""" --->结束<--- """""""""
@@ -893,8 +899,8 @@ let g:loaded_netrwPlugin=1
 " set t_Co=256
 syntax enable
 
-" let g:airline_theme='dracula'
-" colorscheme dracula
+let g:airline_theme='dracula'
+colorscheme dracula
 
 " let g:airline_theme='gruvbox'
 " colorscheme gruvbox
@@ -905,9 +911,9 @@ syntax enable
 
 
 " hardhacker theme
-let g:hardhacker_darker = 1
-colorscheme hardhacker
-let g:airline_theme='dracula'
+" let g:hardhacker_darker = 1
+" colorscheme hardhacker
+" let g:airline_theme='dracula'
 
 " let g:airline_theme='base16'
 " colorscheme tokyonight-night
