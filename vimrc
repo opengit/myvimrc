@@ -923,9 +923,10 @@ colorscheme dracula
 " colorscheme tokyonight-moon
 
 " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h10
-set guifont=Sarasa\ Mono\ SC\ Nerd:h12
+" set guifont=Sarasa\ Mono\ SC\ Nerd:h12
 " set guifont=Sarasa\ Mono\ SC\ Nerd:h12
 " set guifont=Monego\ Nerd\ Font\ Fix:h12
+set guifont=GoMono\ Nerd\ Font:h12
 
 
 """ 备份文件夹位置
