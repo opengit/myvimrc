@@ -899,14 +899,14 @@ let g:loaded_netrwPlugin=1
 " set t_Co=256
 syntax enable
 
-let g:airline_theme='dracula'
-colorscheme dracula
+" let g:airline_theme='dracula'
+" colorscheme dracula
 
-" let g:airline_theme='gruvbox'
-" colorscheme gruvbox
+let g:airline_theme='gruvbox'
+colorscheme gruvbox
 " soft, medium, hard
-" let g:gruvbox_contrast_dark='hard'
-" set background=dark
+let g:gruvbox_contrast_dark='hard'
+set background=dark
 
 
 
