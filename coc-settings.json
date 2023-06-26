@@ -53,7 +53,7 @@
   "jedi.codeAction.nameExtractFunction": "jls_extract_def",
   "jedi.codeAction.nameExtractVariable": "jls_extract_var",
   "jedi.completion.disableSnippets": false,
-  "jedi.completion.resolveEagerly": false,
+  "jedi.completion.resolveEagerly": true,
   "jedi.completion.ignorePatterns": [],
   "jedi.diagnostics.enable": false,
   "jedi.diagnostics.didOpen": true,
@@ -64,7 +64,7 @@
   "jedi.hover.disable.keyword.names": [],
   "jedi.hover.disable.keyword.fullNames": [],
   "jedi.workspace.extraPaths": [],
-  "jedi.workspace.symbols.maxSymbols": 20,
+  "jedi.workspace.symbols.maxSymbols": 30,
   "jedi.workspace.symbols.ignoreFolders": [
     ".nox",
     ".tox",
@@ -147,7 +147,7 @@
   // CocOutline
   "outline.sortBy": "position",
   "outline.followCursor": true,
-  "outline.autoWidth": false,
+  "outline.autoWidth": true,
   "outline.autoPreview": true,
 
   // coc-explorer

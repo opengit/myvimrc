@@ -83,6 +83,9 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'hardhackerlabs/theme-vim', { 'as': 'hardhacker' }
+Plug 'ayu-theme/ayu-vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'patstockwell/vim-monokai-tasty'
 """
 
 """ coc.nvim
@@ -896,31 +899,48 @@ let g:loaded_netrwPlugin=1
 " if has('termguicolors')
 "    set termguicolors
 " endif
-" set t_Co=256
 syntax enable
+" set termguicolors
+set t_Co=256
 
+
+" dracula
 " let g:airline_theme='dracula'
 " colorscheme dracula
+" let g:airline_theme='dracula'
 
-let g:airline_theme='gruvbox'
-colorscheme gruvbox
+
+" gruvbox
+" let g:airline_theme='gruvbox'
+" colorscheme gruvbox
 " soft, medium, hard
-let g:gruvbox_contrast_dark='hard'
-set background=dark
+" let g:gruvbox_contrast_dark='hard'
+" set background=dark
 
 
 
-" hardhacker theme
+" hardhacker
 " let g:hardhacker_darker = 1
 " colorscheme hardhacker
 " let g:airline_theme='dracula'
 
+
+" tokyonight
 " let g:airline_theme='base16'
 " colorscheme tokyonight-night
 " colorscheme tokyonight
 " colorscheme tokyonight-storm
 " colorscheme tokyonight-day
 " colorscheme tokyonight-moon
+
+
+" vim-monokai-tasty
+let g:vim_monokai_tasty_italic = 1
+let g:vim_monokai_tasty_machine_tint = 1
+" let g:vim_monokai_tasty_highlight_active_window = 1
+colorscheme vim-monokai-tasty
+let g:airline_theme='monokai_tasty'
+
 
 " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h10
 " set guifont=Sarasa\ Mono\ SC\ Nerd:h12
