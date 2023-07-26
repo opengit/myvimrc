@@ -33,6 +33,12 @@
 " <leader><F5>   ->     diagnostics
 " <leader><F6>   ->    fzf files
 " <leader><F7>   ->    Rg full text search
+"
+" space + below key
+" ed  ->  coc explorer 边栏打开 .vim 配置文件夹
+" ef  ->  coc explorer 悬浮打开 当前文件夹
+" ec  ->  coc explorer 边栏打开 .config/coc 配置文件夹
+
 
 
 
@@ -258,7 +264,8 @@ else
 endif
 " Use preset argument to open it
 nmap <space>ed <Cmd>CocCommand explorer --preset .vim<CR>
-nmap <space>ef <Cmd>CocCommand explorer --preset floating<CR>
+" nmap <space>ef <Cmd>CocCommand explorer --preset floating<CR>
+nmap <space>ef <Cmd>CocCommand explorer<CR>
 nmap <space>ec <Cmd>CocCommand explorer --preset cocConfig<CR>
 " List all presets
 nmap <space>el <Cmd>CocList explPresets<CR>
@@ -475,22 +482,23 @@ endif
 " let g:airline#extensions#tabline#left_sep = ''
 " let g:airline#extensions#tabline#left_alt_sep = ''
 
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '│␤'
-let g:airline_symbols.maxlinenr = '│'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = ' ∄'
-let g:airline_symbols.whitespace = ''
-let g:airline_symbols.crypt = ''
-let g:airline_symbols.paste = 'Þ'
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline_symbols.dirty=' ⧗'
+" this is my chioce.
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline_symbols.branch = ''
+" let g:airline_symbols.readonly = ''
+" let g:airline_symbols.linenr = '│␤'
+" let g:airline_symbols.maxlinenr = '│'
+" let g:airline_symbols.spell = 'Ꞩ'
+" let g:airline_symbols.notexists = ' ∄'
+" let g:airline_symbols.whitespace = ''
+" let g:airline_symbols.crypt = ''
+" let g:airline_symbols.paste = 'Þ'
+" let g:airline#extensions#tabline#left_sep = ''
+" let g:airline#extensions#tabline#left_alt_sep = ''
+" let g:airline_symbols.dirty=' ⧗'
 
 " let g:airline_left_sep = ''
 " let g:airline_left_alt_sep = ''
@@ -605,7 +613,7 @@ let g:indentLine_color_term = 239
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " 自动设置缩进线，下面这行，最后有一个空格
-set list lcs=tab:\┆\ 
+" set list lcs=tab:\┆\ 
 """
 
 """
@@ -896,11 +904,10 @@ let g:loaded_netrw=1
 let g:loaded_netrwPlugin=1
 
 " 主题颜色及字体
-" if has('termguicolors')
-"    set termguicolors
-" endif
+"if has('termguicolors')
+"   set termguicolors
+"endif
 syntax enable
-" set termguicolors
 set t_Co=256
 
 
@@ -937,7 +944,7 @@ set t_Co=256
 " vim-monokai-tasty
 let g:vim_monokai_tasty_italic = 1
 let g:vim_monokai_tasty_machine_tint = 1
-" let g:vim_monokai_tasty_highlight_active_window = 1
+let g:vim_monokai_tasty_highlight_active_window = 1
 colorscheme vim-monokai-tasty
 let g:airline_theme='monokai_tasty'
 
