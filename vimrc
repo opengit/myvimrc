@@ -29,7 +29,7 @@
 " """"""" e      ->   同 h 功能，但是递归折叠下面所有
 
 """""""""
-" <leader><F4>   ->    coc outline
+" <leader><F4>   ->    vista
 " <leader><F5>   ->     diagnostics
 " <leader><F6>   ->    fzf files
 " <leader><F7>   ->    Rg full text search
@@ -258,7 +258,9 @@ let g:coc_explorer_global_presets = {
 \ }
 
 if has('nvim')
-    nmap <leader><F3> <Cmd>CocCommand explorer --toggle --preset floating<CR>
+    " 改成这个可以在浮动窗口中打开
+    " nmap <leader><F3> <Cmd>CocCommand explorer --toggle --preset floating<CR>
+    nmap <leader><F3> <Cmd>CocCommand explorer<CR>
 else
     nmap <leader><F3> <Cmd>CocCommand explorer<CR>
 endif
@@ -286,8 +288,11 @@ let airline#extensions#coc#warning_symbol = ''
 let g:coc_global_extensions = ['coc-html','coc-css', 'coc-json',
             \ 'coc-lists','coc-markdownlint', 'coc-explorer',
             \ 'coc-emmet', 'coc-xml','coc-yaml','coc-syntax', 'coc-git', 'coc-snippets',
-            \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji', 'coc-omni', 'coc-jedi', 'coc-diagnostic',
-            \ 'coc-tsserver', 'coc-prettier', 'coc-explorer']
+            \ 'coc-highlight','coc-pairs','coc-tag','coc-emoji', 'coc-omni',
+            \ 'coc-tsserver', 'coc-prettier', 'coc-explorer',
+            "\ 'coc-jedi', 'coc-diagnostic',
+            \ 'coc-pyright',
+            \ 'coc-markdown-preview-enhanced', 'coc-webview']
 
 
 " 根据是否有诊断信息，来决定当鼠标悬停时，是显示文档还是显示诊断信息
@@ -361,7 +366,7 @@ let g:fzf_colors = {
 
 " shortcut
 " code outline
-nmap <leader><F4> :CocFzfList outline<cr>
+" nmap <leader><F4> :CocFzfList outline<cr>
 
 " code diagnostics
 " nmap <leader><F5> :CocFzfList diagnostics<cr>
@@ -658,6 +663,22 @@ Plug 'sheerun/vim-polyglot'
 Plug 'ryanoasis/vim-devicons'
 """
 
+""" vista
+Plug 'liuchengxu/vista.vim'
+let g:vista_default_executive = 'coc'
+" let g:vista_default_executive = 'ctags'
+" let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_fzf_preview = ['right:50%']
+let g:vista#renderer#enable_icon = 1
+"let g:vista#renderer#icons = {
+"\   "function": "\uf794",
+"\   "variable": "\uf71b",
+"\  }
+"
+" set tags+=./tags
+
+nmap <leader><F4> :Vista!!<cr>
+"""
 
 """
 Plug 'luochen1990/rainbow'
@@ -936,9 +957,8 @@ set t_Co=256
 
 
 " dracula
-" let g:airline_theme='dracula'
-" colorscheme dracula
-" let g:airline_theme='dracula'
+"colorscheme dracula
+"let g:airline_theme='dracula'
 
 
 " gruvbox
@@ -951,9 +971,9 @@ set t_Co=256
 
 
 " hardhacker
-" let g:hardhacker_darker = 1
-" colorscheme hardhacker
-" let g:airline_theme='dracula'
+let g:hardhacker_darker = 1
+colorscheme hardhacker
+let g:airline_theme='dracula'
 
 
 " tokyonight
@@ -966,11 +986,11 @@ set t_Co=256
 
 
 " vim-monokai-tasty
-let g:vim_monokai_tasty_italic = 1
-let g:vim_monokai_tasty_machine_tint = 1
-let g:vim_monokai_tasty_highlight_active_window = 1
-colorscheme vim-monokai-tasty
-let g:airline_theme='monokai_tasty'
+" let g:vim_monokai_tasty_italic = 1
+" let g:vim_monokai_tasty_machine_tint = 1
+" let g:vim_monokai_tasty_highlight_active_window = 1
+" colorscheme vim-monokai-tasty
+" let g:airline_theme='monokai_tasty'
 
 
 " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h10
