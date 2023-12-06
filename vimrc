@@ -56,6 +56,8 @@
 """"""""""""""""""""""" 配置开始 """"""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" loading the environment
+" let $PATH .= '/home/gitopen/.nvm/versions/node/v20.3.1/bin:/home/gitopen/Works/miniconda3/envs/deep/bin:/home/gitopen/Works/miniconda3/condabin:/home/gitopen/Works/jdk-17.0.8/bin:/home/gitopen/Works/jdk-17.0.8/jre/bin:/home/gitopen/Works/go/bin:/home/gitopen/Works/uctags/bin:/home/gitopen/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/gitopen/.fzf/bin'
 
 """ 定义leader键
 let mapleader=","
@@ -86,12 +88,10 @@ call plug#begin('~/.vim/plugins')
 
 """ theme
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'morhetz/gruvbox'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'hardhackerlabs/theme-vim', { 'as': 'hardhacker' }
-Plug 'ayu-theme/ayu-vim'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'patstockwell/vim-monokai-tasty'
+Plug 'morhetz/gruvbox'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+
 """
 
 """ coc.nvim
@@ -259,8 +259,8 @@ let g:coc_explorer_global_presets = {
 
 if has('nvim')
     " 改成这个可以在浮动窗口中打开
-    " nmap <leader><F3> <Cmd>CocCommand explorer --toggle --preset floating<CR>
-    nmap <leader><F3> <Cmd>CocCommand explorer<CR>
+    nmap <leader><F3> <Cmd>CocCommand explorer --toggle --preset floating<CR>
+    " nmap <leader><F3> <Cmd>CocCommand explorer<CR>
 else
     nmap <leader><F3> <Cmd>CocCommand explorer<CR>
 endif
@@ -366,7 +366,7 @@ let g:fzf_colors = {
 
 " shortcut
 " code outline
-" nmap <leader><F4> :CocFzfList outline<cr>
+nmap <leader><F4> :CocFzfList outline<cr>
 
 " code diagnostics
 " nmap <leader><F5> :CocFzfList diagnostics<cr>
@@ -529,23 +529,23 @@ let g:airline_symbols.dirty=' ⧗'
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" let g:airline_left_sep = ''
-" let g:airline_left_alt_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_right_alt_sep = ''
-" let g:airline_symbols.branch = '⎇'
-" let g:airline_symbols.dirty='∓'
-" let g:airline_symbols.readonly = ''
-" let g:airline_symbols.linenr = '│␤'
-" let g:airline_symbols.maxlinenr = '│'
-" let g:airline_symbols.colnr = ':'
-" let g:airline_symbols.spell = 'Ꞩ'
-" let g:airline_symbols.notexists = '∄'
-" let g:airline_symbols.whitespace = ''
-" let g:airline_symbols.crypt = ''
-" let g:airline_symbols.paste = 'Þ'
-" let g:airline#extensions#tabline#left_sep = ''
-" let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.dirty='∓'
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '│␤'
+let g:airline_symbols.maxlinenr = '│'
+let g:airline_symbols.colnr = ':'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = ''
+let g:airline_symbols.crypt = ''
+let g:airline_symbols.paste = 'Þ'
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
 
 " let g:airline_left_sep = ''
 " let g:airline_left_alt_sep = ''
@@ -677,7 +677,7 @@ let g:vista#renderer#enable_icon = 1
 "
 " set tags+=./tags
 
-nmap <leader><F4> :Vista!!<cr>
+" nmap <leader><F4> :Vista!!<cr>
 """
 
 """
@@ -759,7 +759,10 @@ call plug#end()
 """""""""""""""
 
 " 保存快捷键
-nmap <leader>w :w!<CR>
+nmap <leader>w :w<CR>
+
+" 把 F1 映射到 Esc
+inoremap <F1> <Esc>
 
 " 设置切换Buffer快捷键
 nnoremap <C-n> :bn<CR>
@@ -957,47 +960,40 @@ set t_Co=256
 
 
 " dracula
-"colorscheme dracula
-"let g:airline_theme='dracula'
+" colorscheme dracula
+" let g:airline_theme='dracula'
 
 
 " gruvbox
-" let g:airline_theme='gruvbox'
-" colorscheme gruvbox
 " soft, medium, hard
-" let g:gruvbox_contrast_dark='hard'
-" set background=dark
+let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_sign_column='bg0'
+colorscheme gruvbox
+let g:airline_theme='gruvbox'
+set background=dark    
 
-
-
-" hardhacker
-let g:hardhacker_darker = 1
-colorscheme hardhacker
-let g:airline_theme='dracula'
-
-
-" tokyonight
-" let g:airline_theme='base16'
-" colorscheme tokyonight-night
-" colorscheme tokyonight
-" colorscheme tokyonight-storm
-" colorscheme tokyonight-day
-" colorscheme tokyonight-moon
+" material
+"let g:material_terminal_italics = 1
+" default' | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'
+"let g:material_theme_style = 'darker-community'
+"colorscheme material
+"let g:airline_theme='material'
 
 
 " vim-monokai-tasty
-" let g:vim_monokai_tasty_italic = 1
-" let g:vim_monokai_tasty_machine_tint = 1
-" let g:vim_monokai_tasty_highlight_active_window = 1
-" colorscheme vim-monokai-tasty
-" let g:airline_theme='monokai_tasty'
+"let g:vim_monokai_tasty_italic = 1
+"let g:vim_monokai_tasty_machine_tint = 0
+"let g:vim_monokai_tasty_highlight_active_window = 0
+"colorscheme vim-monokai-tasty
+"let g:airline_theme='monokai_tasty'
 
 
 " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h10
 " set guifont=Sarasa\ Mono\ SC\ Nerd:h12
 " set guifont=Sarasa\ Mono\ SC\ Nerd:h12
 " set guifont=Monego\ Nerd\ Font\ Fix:h12
-set guifont=GoMono\ Nerd\ Font:h12
+" set guifont=GoMono\ Nerd\ Font:h12
+set guifont=Sarasa\ Mono\ SC\ Nerd\ Font:h12
 
 
 """ 备份文件夹位置
